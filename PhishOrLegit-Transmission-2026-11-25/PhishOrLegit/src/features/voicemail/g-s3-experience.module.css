@@ -1,0 +1,152 @@
+.screen {
+  overflow: hidden;
+}
+
+.content {
+  height: 100dvh;
+  overflow-y: auto;
+  padding-bottom: calc(var(--safe-bottom) + 2rem);
+}
+
+.contextRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.difficultyBadge {
+  border-radius: var(--radius-capsule);
+  padding: 0.35rem 0.65rem;
+  background: color-mix(in srgb, var(--difficulty-green) 14%, transparent);
+  color: var(--difficulty-green);
+  font-size: var(--text-footnote);
+  font-weight: 700;
+}
+
+.difficultyBadge[data-difficulty="orange"] {
+  background: color-mix(in srgb, var(--difficulty-orange) 14%, transparent);
+  color: var(--difficulty-orange);
+}
+
+.difficultyBadge[data-difficulty="red"] {
+  background: color-mix(in srgb, var(--difficulty-red) 14%, transparent);
+  color: var(--difficulty-red);
+}
+
+.contextHint,
+.callType,
+.callerDetail {
+  color: var(--color-secondary-label);
+  font-size: var(--text-footnote);
+}
+
+.callCard {
+  display: grid;
+  justify-items: center;
+  padding: var(--space-5) var(--space-4);
+  background: transparent;
+  text-align: center;
+}
+
+.callerIcon {
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: var(--space-3);
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #55d977, #24a94a 72%, #16883b);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.44) inset,
+    0 12px 28px rgba(52, 199, 89, 0.24);
+  color: white;
+}
+
+.callerName {
+  margin: 0.2rem 0;
+  font-size: var(--text-title-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.waveform {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: var(--space-5) 0 var(--space-3);
+}
+
+.waveform span {
+  width: 0.22rem;
+  min-height: 0.5rem;
+  border-radius: var(--radius-capsule);
+  background: linear-gradient(180deg, #54a7ff, var(--color-tint));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-tint) 40%, transparent);
+}
+
+.pendingAudio {
+  display: inline-flex;
+  min-height: var(--hit-target);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 0.75px solid color-mix(in srgb, var(--color-label) 12%, transparent);
+  border-radius: var(--radius-capsule);
+  padding: 0.65rem 1rem;
+  background: color-mix(
+    in srgb,
+    var(--color-secondary-background) 62%,
+    transparent
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 7px 20px rgba(0, 0, 0, 0.1);
+  color: var(--color-secondary-label);
+  font-weight: 600;
+}
+
+.transcript {
+  width: 100%;
+  margin-top: var(--space-4);
+  border: 0;
+  border-radius: var(--radius-medium);
+  padding: 0 var(--space-4) var(--space-4);
+  background: var(--color-secondary-background);
+  text-align: left;
+}
+
+.transcript summary {
+  min-height: var(--hit-target);
+  cursor: pointer;
+  color: var(--color-tint);
+  font-size: var(--text-subheadline);
+  font-weight: 600;
+  line-height: var(--hit-target);
+}
+
+.transcript p {
+  margin: 0;
+  color: var(--color-label);
+  font-size: var(--text-subheadline);
+  line-height: 1.45;
+}
+
+.panelSpacing {
+  margin-top: var(--space-4);
+}
+
+.clueActions {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (min-width: 43.75rem) {
+  .content {
+    height: 874px;
+  }
+}

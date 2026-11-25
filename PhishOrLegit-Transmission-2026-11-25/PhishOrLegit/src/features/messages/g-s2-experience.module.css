@@ -1,0 +1,175 @@
+.screen {
+  overflow: hidden;
+}
+
+.content {
+  height: 100dvh;
+  overflow-y: auto;
+  padding-bottom: calc(var(--safe-bottom) + 2rem);
+}
+
+.contextRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.difficultyBadge {
+  border-radius: var(--radius-capsule);
+  padding: 0.35rem 0.65rem;
+  background: color-mix(in srgb, var(--difficulty-green) 14%, transparent);
+  color: var(--difficulty-green);
+  font-size: var(--text-footnote);
+  font-weight: 700;
+}
+
+.difficultyBadge[data-difficulty="orange"] {
+  background: color-mix(in srgb, var(--difficulty-orange) 14%, transparent);
+  color: var(--difficulty-orange);
+}
+
+.difficultyBadge[data-difficulty="red"] {
+  background: color-mix(in srgb, var(--difficulty-red) 14%, transparent);
+  color: var(--difficulty-red);
+}
+
+.contextHint,
+.contactDetail,
+.timestamp {
+  color: var(--color-secondary-label);
+  font-size: var(--text-footnote);
+}
+
+.conversation {
+  overflow: visible;
+}
+
+.contactHeader {
+  display: flex;
+  min-height: 5.8rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem var(--space-4) var(--space-4);
+  text-align: center;
+}
+
+.avatar {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #7c8cff, #3f51d8 70%, #2837a4);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.42) inset,
+    0 8px 20px rgba(63, 81, 216, 0.28);
+  color: white;
+  font-size: var(--text-title-3);
+  font-weight: 700;
+}
+
+.contactName {
+  margin: 0;
+  font-size: var(--text-subheadline);
+  font-weight: 650;
+}
+
+.timeline {
+  display: flex;
+  min-height: 13.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-2) 0 var(--space-5);
+}
+
+.timestamp {
+  align-self: center;
+  margin-bottom: var(--space-5);
+}
+
+.incomingBubble {
+  position: relative;
+  max-width: 88%;
+  border-radius: 1.25rem;
+  padding: 0.72rem 0.95rem;
+  background: var(--color-tertiary-background);
+  color: var(--color-label);
+  font-size: var(--text-body);
+  line-height: 1.38;
+}
+
+.incomingBubble::before {
+  position: absolute;
+  bottom: 0;
+  left: -0.34rem;
+  width: 0.82rem;
+  height: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+  background: var(--color-tertiary-background);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  content: "";
+}
+
+.messageLink {
+  display: inline;
+  min-height: 2rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.45rem;
+  padding: 0.08rem 0.18rem;
+  background: transparent;
+  color: var(--color-tint);
+  font: inherit;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.12em;
+}
+
+.messageRequest {
+  display: inline;
+  min-height: 2rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.45rem;
+  padding: 0.08rem 0.18rem;
+  background: color-mix(in srgb, var(--color-red) 10%, transparent);
+  color: inherit;
+  font: inherit;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.evidenceSelected {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+  background: color-mix(in srgb, var(--color-orange) 13%, transparent);
+}
+
+.notice {
+  min-height: 2.6rem;
+  margin: var(--space-3) var(--space-2) 0;
+  color: var(--color-secondary-label);
+  font-size: var(--text-subheadline);
+  line-height: 1.35;
+}
+
+.panelSpacing {
+  margin-top: var(--space-4);
+}
+
+.clueActions {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (min-width: 43.75rem) {
+  .content {
+    height: 874px;
+  }
+}

@@ -1,0 +1,34 @@
+.material-glass {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-secondary-background) 66%, transparent),
+    color-mix(in srgb, var(--color-secondary-background) 44%, transparent)
+  );
+  border: 0.75px solid color-mix(in srgb, var(--color-label) 15%, transparent);
+  box-shadow: var(--shadow-glass);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  backdrop-filter: blur(26px) saturate(190%);
+}
+
+.material-glass-clear {
+  background: color-mix(
+    in srgb,
+    var(--color-secondary-background) 32%,
+    transparent
+  );
+  border: 0.75px solid color-mix(in srgb, white 32%, transparent);
+  box-shadow: var(--shadow-glass);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .material-glass,
+  .material-glass-clear {
+    background: var(--color-secondary-background);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

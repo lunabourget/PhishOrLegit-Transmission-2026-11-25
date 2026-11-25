@@ -1,0 +1,256 @@
+.launchButton {
+  display: flex;
+  width: min(100%, 21rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0 auto 1.75rem;
+}
+
+.scannerOverlay {
+  position: fixed;
+  z-index: 250;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: auto 1fr auto;
+  background: #050608;
+  color: white;
+}
+
+.cameraPreview,
+.cameraShade {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+
+.cameraPreview {
+  object-fit: cover;
+}
+
+.cameraShade {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 6, 8, 0.76),
+      transparent 24% 62%,
+      #050608 91%
+    ),
+    radial-gradient(
+      circle at 50% 43%,
+      transparent 0 8.5rem,
+      rgba(5, 6, 8, 0.44) 12rem
+    );
+  pointer-events: none;
+}
+
+.scannerHeader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--safe-top) + 1rem) calc(var(--safe-right) + 1rem) 0
+    calc(var(--safe-left) + 1rem);
+}
+
+.eyebrow {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.scannerTitle {
+  margin: 0.2rem 0 0;
+  font-size: var(--text-title-1);
+  letter-spacing: -0.035em;
+}
+
+.closeButton {
+  display: grid;
+  width: var(--hit-target);
+  height: var(--hit-target);
+  cursor: pointer;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: rgba(20, 22, 28, 0.64);
+  color: white;
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
+.scanFrame {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  justify-self: center;
+  width: min(67vw, 16rem);
+  aspect-ratio: 1;
+  border-radius: 2rem;
+  background: rgba(13, 15, 20, 0.1);
+  box-shadow: 0 0 0 999px rgba(5, 6, 8, 0.08);
+}
+
+.scanFrame i {
+  position: absolute;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-color: white;
+  border-style: solid;
+  filter: drop-shadow(3px 2px 0 #00d3ff) drop-shadow(-2px -1px 0 #df4499);
+}
+
+.scanFrame i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-width: 0.35rem 0 0 0.35rem;
+  border-radius: 1.2rem 0 0;
+}
+
+.scanFrame i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-width: 0.35rem 0.35rem 0 0;
+  border-radius: 0 1.2rem 0 0;
+}
+
+.scanFrame i:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  border-width: 0 0.35rem 0.35rem 0;
+  border-radius: 0 0 1.2rem;
+}
+
+.scanFrame i:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 0.35rem 0.35rem;
+  border-radius: 0 0 0 1.2rem;
+}
+
+.scanFrame span {
+  position: absolute;
+  right: 1.15rem;
+  left: 1.15rem;
+  top: 50%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00d3ff,
+    white,
+    #df4499,
+    transparent
+  );
+  box-shadow: 0 0 18px #00d3ff;
+  opacity: 0;
+}
+
+.scanFrame span[data-scanning="true"] {
+  animation: scan-line 2.1s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.scannerFooter {
+  position: relative;
+  z-index: 2;
+  padding: 0 calc(var(--safe-right) + 1rem) calc(var(--safe-bottom) + 1rem)
+    calc(var(--safe-left) + 1rem);
+}
+
+.statusMessage {
+  min-height: 2.5rem;
+  margin: 0 0 0.75rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--text-subheadline);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.manualForm {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.35rem;
+  padding: 0.75rem;
+  background: rgba(20, 22, 28, 0.76);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+}
+
+.manualLabel {
+  display: block;
+  margin: 0 0 0.45rem 0.25rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--text-caption);
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.manualRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+}
+
+.manualInput {
+  min-width: 0;
+  min-height: var(--hit-target);
+  border: 0;
+  border-radius: 0.9rem;
+  padding: 0 0.85rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+}
+
+.manualInput:focus-visible {
+  box-shadow: 0 0 0 2px #00d3ff inset;
+}
+
+.manualInput::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.openButton {
+  min-height: var(--hit-target);
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.9rem;
+  padding: 0 0.9rem;
+  background: white;
+  color: #0d0f14;
+  font-size: var(--text-subheadline);
+  font-weight: 700;
+}
+
+@media (min-width: 43.75rem) {
+  .scannerOverlay {
+    position: absolute;
+  }
+
+  .scanFrame {
+    width: 15.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanFrame span[data-scanning="true"] {
+    animation: none;
+  }
+}
+
+@keyframes scan-line {
+  0%,
+  100% {
+    transform: translateY(-5.75rem);
+  }
+
+  50% {
+    transform: translateY(5.75rem);
+  }
+}

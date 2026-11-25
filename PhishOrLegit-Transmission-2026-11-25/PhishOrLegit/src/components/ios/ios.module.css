@@ -1,0 +1,306 @@
+.navigationBar {
+  position: absolute;
+  z-index: 20;
+  top: var(--safe-top);
+  right: var(--safe-right);
+  left: var(--safe-left);
+  display: grid;
+  min-height: 3.75rem;
+  grid-template-columns: minmax(2.75rem, 1fr) auto minmax(2.75rem, 1fr);
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+}
+
+.navigationBar::before {
+  position: absolute;
+  z-index: -1;
+  inset: -2.75rem 0 -1.25rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-system-background) 96%, transparent) 0%,
+    color-mix(in srgb, var(--color-system-background) 78%, transparent) 68%,
+    transparent 100%
+  );
+  content: "";
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
+  backdrop-filter: blur(18px) saturate(165%);
+}
+
+.navigationTitle {
+  overflow: hidden;
+  margin: 0;
+  font-size: var(--text-headline);
+  font-weight: 650;
+  letter-spacing: -0.012em;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navigationSlot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.navigationTrailing {
+  justify-content: flex-end;
+}
+
+.glassButton {
+  position: relative;
+  isolation: isolate;
+  min-height: var(--hit-target);
+  cursor: pointer;
+  overflow: hidden;
+  border: 0.75px solid color-mix(in srgb, var(--color-label) 15%, transparent);
+  border-radius: var(--radius-capsule);
+  padding: 0.6875rem 1.125rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-secondary-background) 66%, transparent),
+    color-mix(in srgb, var(--color-secondary-background) 44%, transparent)
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.32) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.2) inset,
+    0 7px 20px rgba(0, 0, 0, 0.12);
+  font-size: var(--text-body);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  transition:
+    filter var(--motion-fast) var(--ease-standard),
+    opacity var(--motion-fast) var(--ease-standard);
+}
+
+.glassButton::before,
+.iconButton::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    140% 90% at 32% -10%,
+    rgba(255, 255, 255, 0.38),
+    transparent 48%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.glassButton:disabled {
+  cursor: default;
+  opacity: 0.38;
+}
+
+.glassButton_standard {
+  color: var(--color-tint);
+}
+
+.glassButton_primary {
+  border-color: color-mix(in srgb, var(--color-tint) 62%, white);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-tint) 88%, white),
+    color-mix(in srgb, var(--color-tint) 94%, black)
+  );
+  box-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.38) inset,
+    0 8px 22px color-mix(in srgb, var(--color-tint) 28%, transparent);
+  color: white;
+}
+
+.glassButton_destructive {
+  color: var(--color-red);
+}
+
+.iconButton {
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  width: var(--hit-target);
+  height: var(--hit-target);
+  cursor: pointer;
+  place-items: center;
+  overflow: hidden;
+  border: 0.75px solid color-mix(in srgb, var(--color-label) 14%, transparent);
+  border-radius: 50%;
+  background: color-mix(
+    in srgb,
+    var(--color-secondary-background) 54%,
+    transparent
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.16) inset,
+    0 6px 18px rgba(0, 0, 0, 0.1);
+  color: var(--color-tint);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+}
+
+.iconButton:hover {
+  background: color-mix(in srgb, var(--color-fill) 72%, transparent);
+}
+
+.segmentedControl {
+  display: grid;
+  min-height: 2.25rem;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.125rem;
+  border-radius: 0.625rem;
+  padding: 0.125rem;
+  background: var(--color-fill);
+}
+
+.segment {
+  position: relative;
+  isolation: isolate;
+  min-height: 2rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--color-label);
+  font-size: var(--text-footnote);
+  font-weight: 600;
+}
+
+.segmentSelection {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: 0.5px solid color-mix(in srgb, var(--color-label) 10%, transparent);
+  border-radius: 0.5rem;
+  background: var(--color-secondary-background);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.segmentLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.systemList {
+  overflow: hidden;
+  border-radius: var(--radius-medium);
+  background: var(--color-secondary-background);
+}
+
+.systemListRow {
+  position: relative;
+  display: flex;
+  min-height: 3.25rem;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.625rem var(--space-4);
+}
+
+.systemListRow:not(:last-child)::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 3.75rem;
+  height: 0.5px;
+  background: var(--color-separator);
+  content: "";
+}
+
+.listIcon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: var(--color-tint);
+  color: white;
+}
+
+.listText {
+  min-width: 0;
+  flex: 1;
+}
+
+.listTitle {
+  overflow: hidden;
+  font-size: var(--text-body);
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listDetail {
+  overflow: hidden;
+  margin-top: 0.125rem;
+  color: var(--color-secondary-label);
+  font-size: var(--text-subheadline);
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listTrailing {
+  color: var(--color-secondary-label);
+  font-size: var(--text-subheadline);
+}
+
+.tabBar {
+  position: absolute;
+  z-index: 20;
+  right: calc(var(--safe-right) + 0.75rem);
+  bottom: calc(var(--safe-bottom) + 0.5rem);
+  left: calc(var(--safe-left) + 0.75rem);
+  display: grid;
+  min-height: 4.25rem;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  border-radius: 2rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.tabItem {
+  display: grid;
+  min-width: var(--hit-target);
+  min-height: 3.5rem;
+  cursor: pointer;
+  place-items: center;
+  align-content: center;
+  gap: 0.125rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-secondary-label);
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.tabItem[data-selected="true"] {
+  color: var(--color-tint);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .navigationBar::before {
+    background: linear-gradient(
+      var(--color-system-background) 0 78%,
+      transparent
+    );
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .glassButton,
+  .iconButton {
+    background: var(--color-secondary-background);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .glassButton_primary {
+    background: var(--color-tint);
+  }
+}

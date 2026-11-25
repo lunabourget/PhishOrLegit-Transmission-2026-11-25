@@ -1,0 +1,33 @@
+.notFound {
+  display: grid;
+  height: 100dvh;
+  align-content: center;
+  justify-items: center;
+  padding: 2rem;
+  background: var(--color-system-background);
+  text-align: center;
+}
+
+.notFound svg {
+  color: var(--color-orange);
+}
+
+.notFound h1 {
+  margin: 1rem 0 0.5rem;
+  font-size: var(--text-title-1);
+  letter-spacing: -0.03em;
+}
+
+.notFound p {
+  margin: 0;
+  color: var(--color-secondary-label);
+}
+
+.notFound a {
+  display: grid;
+  min-height: var(--hit-target);
+  margin-top: 1.5rem;
+  place-items: center;
+  color: var(--color-tint);
+  font-weight: 600;
+}

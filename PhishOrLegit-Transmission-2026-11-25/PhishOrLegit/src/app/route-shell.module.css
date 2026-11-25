@@ -1,0 +1,48 @@
+.content {
+  overflow-y: auto;
+}
+
+.routeIcon {
+  display: grid;
+  width: 4.75rem;
+  height: 4.75rem;
+  margin: 2rem auto 1rem;
+  place-items: center;
+  border-radius: 1.4rem;
+  background: var(--difficulty-color);
+  box-shadow: 0 14px 28px
+    color-mix(in srgb, var(--difficulty-color) 24%, transparent);
+  color: white;
+}
+
+.routeIcon[data-difficulty="green"] {
+  --difficulty-color: var(--difficulty-green);
+}
+
+.routeIcon[data-difficulty="orange"] {
+  --difficulty-color: var(--difficulty-orange);
+}
+
+.routeIcon[data-difficulty="red"] {
+  --difficulty-color: var(--difficulty-red);
+}
+
+.routeIcon[data-difficulty="link"] {
+  --difficulty-color: #10745e;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-title-1);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.body {
+  margin: 0.75rem auto 2rem;
+  color: var(--color-secondary-label);
+  font-size: var(--text-body);
+  line-height: 1.42;
+  text-align: center;
+}
