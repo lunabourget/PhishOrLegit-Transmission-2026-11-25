@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { IconButton } from "@/components/ios/icon-button";
 import { NavigationBar } from "@/components/ios/navigation-bar";
@@ -61,6 +62,9 @@ export default function Home() {
             <p className="section-caption">
               Training simulation only. Nothing entered here is sent or saved.
             </p>
+            <Link className={styles.videoLink} href="/fake-qr-code">
+              Watch the fake QR code video
+            </Link>
           </div>
         </div>
       </DeviceCanvas>
