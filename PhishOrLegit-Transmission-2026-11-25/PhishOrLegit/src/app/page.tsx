@@ -63,9 +63,6 @@ export default function Home() {
               Training simulation only. Nothing entered here is sent or saved.
             </p>
 
-            <Link className={styles.devLink} href="/dev">
-              Open component workshop
-            </Link>
           </div>
         </div>
       </DeviceCanvas>
