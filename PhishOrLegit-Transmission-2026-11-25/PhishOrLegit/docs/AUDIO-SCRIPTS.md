@@ -2,7 +2,7 @@
 
 ## Delivery specification
 
-- Export format: MP3.
+- Export format: M4A.
 - Recommended encoding: 44.1 or 48 kHz, mono, 128 kbps or higher.
 - Do not add music, sound effects, spoken card IDs, or silence longer than one second.
 - Keep the exact English meaning and all security clues.
@@ -13,7 +13,7 @@ Deliver the files with these exact lowercase names under `public/audio/`.
 
 ## G-S3 - fake delivery call
 
-Filename: `g-s3.mp3`
+Filename: `g-s3.m4a`
 
 Voice direction: Neutral automated service voice. Clear international English, calm pace, slightly impersonal. Do not sound comic or obviously suspicious.
 
@@ -23,7 +23,7 @@ Hello, this is ParcelGo. Your parcel could not be delivered. Press one and give 
 
 ## G-S5 - legitimate school call
 
-Filename: `g-s5.mp3`
+Filename: `g-s5.m4a`
 
 Voice direction: Warm adult voice. Clear international English, natural pace, informative and relaxed. No urgency.
 
@@ -33,7 +33,7 @@ Hello, this is the front desk of your school. A parcel arrived for you. You can 
 
 ## O-S5 - fake bank call
 
-Filename: `o-s5.mp3`
+Filename: `o-s5.m4a`
 
 Voice direction: Professional adult voice. Clear international English, controlled urgency, reassuring but persuasive. Do not make the scam obvious.
 
@@ -43,7 +43,7 @@ Hello, this is Mark from the NovaBank fraud team. We blocked a suspicious paymen
 
 ## O-S6 - legitimate school IT call
 
-Filename: `o-s6.mp3`
+Filename: `o-s6.m4a`
 
 Voice direction: Calm adult technical-support voice. Clear international English, natural pace, factual and reassuring. No urgency.
 
@@ -53,7 +53,7 @@ Hello, this is the school IT desk. The Wi-Fi will be unavailable from six to sev
 
 ## R-S1 - fake manager call
 
-Filename: `r-s1.mp3`
+Filename: `r-s1.m4a`
 
 Voice direction: Confident adult corporate voice. Slight travel background feeling, hurried but believable. The voice must be wholly fictional and must not imitate a real person.
 
@@ -63,7 +63,7 @@ It's your manager. I'm boarding a plane. I need you to make an urgent transfer o
 
 ## R-S2 - legitimate HR call
 
-Filename: `r-s2.mp3`
+Filename: `r-s2.m4a`
 
 Voice direction: Friendly adult corporate voice. Clear international English, natural pace, calm and helpful. No pressure or sales tone.
 
@@ -76,12 +76,12 @@ Hi, it's Sarah from Brightwave HR. Just a reminder: your onboarding training is 
 The application will load the files from these stable URLs:
 
 ```text
-/audio/g-s3.mp3
-/audio/g-s5.mp3
-/audio/o-s5.mp3
-/audio/o-s6.mp3
-/audio/r-s1.mp3
-/audio/r-s2.mp3
+/audio/g-s3.m4a
+/audio/g-s5.m4a
+/audio/o-s5.m4a
+/audio/o-s6.m4a
+/audio/r-s1.m4a
+/audio/r-s2.m4a
 ```
 
-The written transcripts remain available in the interface as an accessible alternative to audio.
+The written transcript is collapsed by default on each call screen and can be revealed as a hint when needed, so it does not give away the call before players investigate it.

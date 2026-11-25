@@ -35,7 +35,7 @@ Respecte impérativement les points suivants :
 - Exécute `pnpm check` et `pnpm test:e2e` après toute modification importante.
 - Ne prétends pas qu'un élément est déployé, testé sur appareil réel ou intégré si ce n'est pas le cas.
 
-État au 25 novembre 2026 : les 21 scénarios Scan me, le scanner QR et le workflow GitHub Pages sont réalisés. Les 10 cartes LINK n'ont que leurs routes/coquilles ; les MP3 ElevenLabs, la parodie motion design, le quiz, le glossaire, les QR définitifs, les nouveaux fichiers d'impression et le déploiement public restent à faire.
+État au 25 novembre 2026 : les 21 scénarios Scan me, le scanner QR et le workflow GitHub Pages sont réalisés. Les six fichiers audio M4A des appels sont intégrés. Les 10 cartes LINK n'ont que leurs routes/coquilles ; la parodie motion design, le quiz, le glossaire, les QR définitifs, les nouveaux fichiers d'impression et le déploiement public restent à faire.
 
 Avant de coder, vérifie l'état du dépôt, lance les tests existants et résume ce que tu as compris. Ensuite, demande au porteur du projet quelle priorité il souhaite traiter, sauf si sa demande fournit déjà une tâche précise.
 

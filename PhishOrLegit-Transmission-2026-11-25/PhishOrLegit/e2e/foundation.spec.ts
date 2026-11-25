@@ -118,9 +118,14 @@ test("completes the G-S3 call flow with the accessible transcript", async ({
   await expect(
     page.getByRole("heading", { name: "ParcelGo delivery service" }),
   ).toBeVisible();
+  await expect(page.locator("audio source")).toHaveAttribute(
+    "src",
+    "/audio/g-s3.m4a",
+  );
   await expect(
-    page.getByRole("button", { name: "Audio file pending" }),
-  ).toBeDisabled();
+    page.getByText("Press one and give your card number"),
+  ).not.toBeVisible();
+  await page.getByText("Reveal transcript hint").click();
   await expect(
     page.getByText("Press one and give your card number"),
   ).toBeVisible();
@@ -162,6 +167,8 @@ test("completes the G-S5 legitimate school call flow", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "School front desk" }),
   ).toBeVisible();
+  await expect(page.getByText("No need to call back.")).not.toBeVisible();
+  await page.getByText("Reveal transcript hint").click();
   await expect(page.getByText("No need to call back.")).toBeVisible();
   await page.getByRole("button", { name: "We listened and voted" }).click();
   await page.getByRole("button", { name: "Choose LEGIT" }).click();

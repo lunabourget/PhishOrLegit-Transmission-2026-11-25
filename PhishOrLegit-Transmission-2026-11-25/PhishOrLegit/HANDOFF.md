@@ -28,22 +28,22 @@ La base technique, le design iOS/Liquid Glass, le scanner QR, les 21 expérience
 - Règles v9 configurées et testées dans le domaine métier.
 - Export statique compatible GitHub Pages, y compris lorsqu'il est servi sous `/<nom-du-depot>`.
 - Workflow GitHub Actions prêt à publier automatiquement `main`.
-- 24 tests unitaires et 58 tests Playwright sur Chromium iPhone et WebKit iPhone.
+- 25 tests unitaires et 58 tests Playwright sur Chromium iPhone et WebKit iPhone.
 - Classeur v9 de 70 cartes rédigées disponible dans le paquet de transmission.
 - Six scripts ElevenLabs prêts dans `docs/AUDIO-SCRIPTS.md`.
+- Six fichiers audio M4A intégrés sous `public/audio/`, avec transcriptions repliées par défaut.
 
 ## Non réalisé ou à finaliser
 
 1. Créer le dépôt GitHub, pousser le projet et activer GitHub Pages avec la source **GitHub Actions**.
 2. Construire le vrai parcours des 10 cartes LINK : navigateur contrôlé, choix Click/Report, correction et conséquence.
-3. Fournir et intégrer les six MP3 ElevenLabs sous `public/audio/`.
-4. Fournir et intégrer la parodie motion design locale utilisée après certaines erreurs.
-5. Ajouter le quiz final de cinq questions et le glossaire cybersécurité.
-6. Décider si le dessin libre tactile est encore requis ; la sélection sémantique accessible fonctionne déjà.
-7. Confirmer définitivement le score orange `+3`, actuellement l'unique valeur déduite.
-8. Générer les QR finaux seulement après gel du nom du dépôt GitHub.
-9. Régénérer les fichiers physiques v9 et tester chaque QR imprimé sur iOS et Android.
-10. Effectuer une validation réelle sur iPhone/Safari et un audit d'accessibilité final.
+3. Fournir et intégrer la parodie motion design locale utilisée après certaines erreurs.
+4. Ajouter le quiz final de cinq questions et le glossaire cybersécurité.
+5. Décider si le dessin libre tactile est encore requis ; la sélection sémantique accessible fonctionne déjà.
+6. Confirmer définitivement le score orange `+3`, actuellement l'unique valeur déduite.
+7. Générer les QR finaux seulement après gel du nom du dépôt GitHub.
+8. Régénérer les fichiers physiques v9 et tester chaque QR imprimé sur iOS et Android.
+9. Effectuer une validation réelle sur iPhone/Safari et un audit d'accessibilité final.
 
 ## Règles validées
 

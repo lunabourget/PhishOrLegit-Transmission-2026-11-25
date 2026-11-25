@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import { scenarioCatalog } from "./catalog";
@@ -15,9 +18,17 @@ describe("voice script catalog", () => {
     expect(new Set(voiceScriptIds).size).toBe(voiceScriptIds.length);
   });
 
-  it("uses stable local MP3 paths", () => {
+  it("uses stable local M4A paths", () => {
     for (const script of voiceScriptCatalog) {
-      expect(script.assetPath).toBe(`/audio/${script.id.toLowerCase()}.mp3`);
+      expect(script.assetPath).toBe(`/audio/${script.id.toLowerCase()}.m4a`);
+    }
+  });
+
+  it("has a local audio file for every call scenario", () => {
+    for (const script of voiceScriptCatalog) {
+      expect(
+        existsSync(resolve(process.cwd(), "public", script.assetPath.slice(1))),
+      ).toBe(true);
     }
   });
 });

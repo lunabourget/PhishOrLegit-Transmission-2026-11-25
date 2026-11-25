@@ -11,7 +11,7 @@
 - Configurable game rules and pure card-outcome logic.
 - Source reconciliation and project documentation.
 - Legacy QR fragment compatibility for prototype identifiers.
-- Six ElevenLabs-ready call scripts and stable local audio paths.
+- Six call scripts with locally hosted M4A audio and revealable transcripts.
 - Confirmed Breach rule: every pawn except the triggering pawn moves back 1.
 - All seven green Scan me routes implemented from cards v9.
 - All seven orange Scan me routes implemented from cards v9.
@@ -33,10 +33,10 @@ Status: the G-S1 Mail experience, sender inspection, physical-vote gate, semanti
 
 ## Milestone 3: scenario engines
 
-Status: the reusable Mail, Messages, and Voicemail renderers are implemented and all 21 Scan me scenarios are connected. ElevenLabs audio, robust freehand hotspot geometry, and an automated cards v9 import workflow remain.
+Status: the reusable Mail, Messages, and Voicemail renderers are implemented and all 21 Scan me scenarios are connected. Robust freehand hotspot geometry and an automated cards v9 import workflow remain.
 
 - Generalize email, SMS, and voicemail renderers.
-- Integrate the six authorized ElevenLabs files, playback, waveform, and transcripts.
+- Verify the six local M4A files, playback, waveform, and revealable transcripts on real devices.
 - Add robust hotspot geometry, coverage thresholds, duplicate handling, and oversized-mark rejection.
 - Add versioned scenario content validation and import workflow from cards v9.
 

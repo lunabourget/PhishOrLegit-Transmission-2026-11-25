@@ -72,20 +72,20 @@ L'accueil peut ouvrir la caméra arrière via `@zxing/browser`. Si la caméra es
 
 Un code inconnu est refusé et ne provoque aucune navigation externe.
 
-## Audio à produire
+## Audio des appels
 
-Six fichiers ElevenLabs manquent encore :
+Les six fichiers M4A sont intégrés dans le projet :
 
 ```text
-public/audio/g-s3.mp3
-public/audio/g-s5.mp3
-public/audio/o-s5.mp3
-public/audio/o-s6.mp3
-public/audio/r-s1.mp3
-public/audio/r-s2.mp3
+public/audio/g-s3.m4a
+public/audio/g-s5.m4a
+public/audio/o-s5.m4a
+public/audio/o-s6.m4a
+public/audio/r-s1.m4a
+public/audio/r-s2.m4a
 ```
 
-Les textes exacts, directions de voix et spécifications d'export sont dans `docs/AUDIO-SCRIPTS.md`. Les transcriptions textuelles sont déjà présentes dans l'interface afin de préserver l'accessibilité.
+Les textes exacts, directions de voix et spécifications d'export sont dans `docs/AUDIO-SCRIPTS.md`. La transcription de chaque appel est repliée par défaut et peut être révélée comme indice.
 
 ## Autres médias à fournir
 

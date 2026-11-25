@@ -7,7 +7,7 @@ Dernière exécution complète : 25 novembre 2026.
 - Formatage Prettier : réussi.
 - ESLint sans avertissement : réussi.
 - TypeScript strict : réussi.
-- Vitest : 24 tests réussis dans 10 fichiers.
+- Vitest : 25 tests réussis dans 10 fichiers.
 - Build Next.js : réussi, 35 pages statiques générées.
 - Export GitHub Pages avec base path `/PhishOrLegit` : réussi.
 - Playwright : 58 tests réussis.

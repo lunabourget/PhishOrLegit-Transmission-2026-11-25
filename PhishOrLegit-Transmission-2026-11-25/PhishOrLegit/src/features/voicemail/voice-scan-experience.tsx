@@ -5,7 +5,9 @@ import { IconButton } from "@/components/ios/icon-button";
 import { NavigationBar } from "@/components/ios/navigation-bar";
 import { SystemIcon } from "@/components/ios/system-icon";
 import { DeviceCanvas } from "@/components/layout/device-canvas";
+import { findVoiceScript } from "@/data/scenarios/voice-scripts";
 import type { Scenario } from "@/domain/scenarios/schema";
+import { publicPath } from "@/lib/public-path";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
 import { useScanReview } from "@/features/review/use-scan-review";
 
@@ -32,7 +34,12 @@ export function VoiceScanExperience({
   clueTitle,
   scenario,
 }: VoiceScanExperienceProps) {
+  const voiceScript = findVoiceScript(scenario.id);
   const review = useScanReview(scenario.verdict);
+
+  if (!voiceScript) {
+    throw new Error(`Missing voice script for call scenario ${scenario.id}`);
+  }
 
   return (
     <DeviceCanvas>
@@ -68,14 +75,22 @@ export function VoiceScanExperience({
               ))}
             </div>
 
-            <button className={styles.pendingAudio} disabled type="button">
-              <SystemIcon name="phone" size={20} />
-              Audio file pending
-            </button>
+            <audio
+              aria-label={`Call audio for ${scenario.id}`}
+              className={styles.audioPlayer}
+              controls
+              preload="none"
+            >
+              <source
+                src={publicPath(voiceScript.assetPath)}
+                type="audio/mp4"
+              />
+              Your browser does not support audio playback.
+            </audio>
 
-            <details className={styles.transcript} open>
-              <summary>Accessible transcript</summary>
-              <p>{scenario.content}</p>
+            <details className={styles.transcript}>
+              <summary>Reveal transcript hint</summary>
+              <p>{voiceScript.transcript}</p>
             </details>
           </section>
 
@@ -102,7 +117,7 @@ export function VoiceScanExperience({
               clueTitle={clueTitle}
               difficulty={scenario.difficulty}
               explanation={scenario.explanation}
-              investigateBody="Listen to the call or read its transcript, then vote with your physical PHISH or LEGIT card."
+              investigateBody="Listen to the call, then vote with your physical PHISH or LEGIT card. Reveal the transcript hint only if needed."
               onBeginVote={review.beginVote}
               onRestart={review.restart}
               onVote={review.chooseVote}
