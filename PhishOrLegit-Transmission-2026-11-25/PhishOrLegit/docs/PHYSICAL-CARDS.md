@@ -28,14 +28,14 @@ https://claude.ai/artifact/JU7z6rDyUfeAggZjEWQ2L5#l01
 https://claude.ai/artifact/JU7z6rDyUfeAggZjEWQ2L5#l08
 ```
 
-They do not currently open the Next.js application. They are prototype QR codes and will be replaced before the final print run. The app now accepts equivalent fragments on its own root URL and redirects them to permanent routes, for example:
+These QR codes belong to obsolete prototype PDFs and do not open the current Next.js application. Do not use those PDFs for production. The app accepts equivalent fragments on its own root URL and redirects them to permanent routes, for example:
 
 ```text
 https://USER.github.io/REPOSITORY/#g-s1 -> /scan/G-S1
 https://USER.github.io/REPOSITORY/#l01  -> /link/L01
 ```
 
-Production decision: deploy on GitHub Pages without a custom domain and generate new QR codes at the last responsible moment, after the repository name is frozen. The final URLs should use direct permanent paths such as `https://USER.github.io/REPOSITORY/scan/G-S1/` and `https://USER.github.io/REPOSITORY/link/L01/`. The printed codes must be decoded and smoke-tested on iOS and Android before the cards are sent to print.
+Production decision: the site is public on GitHub Pages at `https://lunabourget.github.io/PhishOrLegit-Transmission-2026-11-25/`. The definitive QR codes point to direct permanent routes such as `/scan/G-S1/` and `/link/L01/` and are frozen. Do not regenerate them unless the experience's behavior changes. When preparing new card files, use the definitive QR codes and decode/test them from the final artwork before printing.
 
 ## Current production target
 

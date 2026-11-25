@@ -8,9 +8,9 @@ Dernière exécution complète : 25 novembre 2026.
 - ESLint sans avertissement : réussi.
 - TypeScript strict : réussi.
 - Vitest : 25 tests réussis dans 10 fichiers.
-- Build Next.js : réussi, 35 pages statiques générées.
-- Export GitHub Pages avec base path `/PhishOrLegit` : réussi.
-- Playwright : 58 tests réussis.
+- Build Next.js : réussi, 36 pages statiques générées.
+- Export GitHub Pages : les 10 routes LINK ont été vérifiées sous le base path du dépôt.
+- Playwright : les deux tests ciblés du parcours LINK passent sur Chromium iPhone ; la suite complète n'a pas été relancée.
 - Navigateurs Playwright : Chromium avec viewport iPhone 16 Pro et WebKit iPhone.
 - Validation sur véritable iPhone : encore requise.
 
@@ -51,22 +51,25 @@ Ne pas accepter automatiquement de nouvelles captures. Les comparer visuellement
 - Transcript accessible pour les appels.
 - Parcours Spot it et correction.
 
-## Critères avant publication publique
+## État de publication
 
-- `pnpm check` et `pnpm test:e2e` passent sur le commit publié.
-- Le workflow GitHub Pages est vert.
-- L'accueil et les 31 routes permanentes répondent sous l'URL GitHub Pages.
+- Le site est public sur `https://lunabourget.github.io/PhishOrLegit-Transmission-2026-11-25/`.
+- Les QR définitifs sont gelés ; ne pas les régénérer sauf changement explicite de fonctionnement.
+
+## Critères pour les prochaines mises à jour
+
+- `pnpm check` passe avant publication ; exécuter les tests E2E pertinents aux changements.
+- Le workflow GitHub Pages est vert après publication.
 - Le scanner fonctionne sur HTTPS et la saisie manuelle reste disponible.
 - Aucun lien simulé ne quitte l'application vers une destination dangereuse.
 - Les médias locaux ne produisent pas d'erreur 404.
 - Les thèmes clair/sombre et les préférences de réduction sont lisibles.
 - Le site est testé sur un véritable iPhone Safari et un appareil Android Chrome.
 
-## Critères avant impression des cartes
+## Critères avant impression ou mise à jour des cartes
 
-- Le nom du dépôt et l'URL GitHub Pages sont gelés.
+- Réutiliser les QR définitifs existants ; ne pas les régénérer sauf changement explicite de fonctionnement.
 - Les scores et règles sont approuvés, notamment orange `+3`.
-- Les 31 QR sont décodés automatiquement depuis le PDF final.
-- Chaque QR ouvre l'ID attendu et non l'ancien artefact Claude.
+- Décoder les QR depuis le PDF final et vérifier que chaque code ouvre l'ID attendu, et non l'ancien artefact Claude.
 - Une planche test est imprimée à l'échelle prévue et rescannée.
 - Les PDF v8 du dossier historique ne sont pas envoyés par erreur à l'imprimeur.

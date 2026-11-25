@@ -2,7 +2,7 @@
 
 Phish or Legit? is the mobile-first digital companion to a physical cybersecurity board game. A player scans a QR code on a physical card and opens a controlled simulation of an email, text message, link, or voicemail. The phone supports investigation and correction; the physical board remains the source of movement, voting, and victory.
 
-This repository contains the production web application foundation. It is configured for static deployment to GitHub Pages through GitHub Actions; publishing still requires selecting GitHub Actions as the Pages source and pushing the workflow to `main`.
+The production site is publicly available on GitHub Pages at [lunabourget.github.io/PhishOrLegit-Transmission-2026-11-25](https://lunabourget.github.io/PhishOrLegit-Transmission-2026-11-25/). GitHub Actions republishes it when changes are pushed to `main`.
 
 ## Requirements
 
@@ -36,7 +36,7 @@ pnpm test:e2e
 
 ## GitHub Pages
 
-Pushing `main` triggers the repository-root workflow at `.github/workflows/deploy-pages.yml`. The workflow builds this app from its subdirectory, detects the repository name, exports it under the matching `/<repository>` base path, validates every route, and publishes the generated `out/` directory. In repository settings, select **Settings → Pages → Build and deployment → Source: GitHub Actions** before the first deployment.
+Pushing `main` triggers the repository-root workflow at `.github/workflows/deploy-pages.yml`. It builds this app from its subdirectory, detects the repository name, exports it under the matching `/<repository>` base path, and publishes the generated `out/` directory. The final QR codes already use the public URL and must not be changed unless the experience's behavior changes.
 
 ## Current routes
 
@@ -45,7 +45,7 @@ Pushing `main` triggers the repository-root workflow at `.github/workflows/deplo
 - `/scan/[cardId]` permanent Scan me route, for example `/scan/G-S1`
 - `/link/[spaceId]` permanent LINK route, for example `/link/L02`
 
-All 21 Scan me routes (`G-S1`–`G-S7`, `O-S1`–`O-S7`, and `R-S1`–`R-S7`) are implemented on the shared Mail, Messages, and Voicemail engines. All 10 LINK identifiers (`L01`–`L10`) have stable route shells ready for the controlled click-or-report experience.
+All 21 Scan me routes (`G-S1`–`G-S7`, `O-S1`–`O-S7`, and `R-S1`–`R-S7`) are implemented on the shared Mail, Messages, and Voicemail engines. All 10 LINK routes (`L01`–`L10`) show controlled link previews and reveal their answers, explanations, and board outcomes after a Click or Report choice.
 
 ## Project documentation
 

@@ -36,7 +36,7 @@ Another player draws from the pile indicated by the active pawn's space, hides t
 ## QR and media decisions
 
 - Final printed QR codes point directly to permanent routes on the GitHub Pages site.
-- Generate the QR codes only after the repository name and Pages URL are frozen.
+- Final QR codes point to the public GitHub Pages routes and are frozen; change them only if the experience's behavior changes.
 - Call scenarios use local M4A audio files with wholly fictional voices.
 - Wrong Scan me answers and phishing LINK clicks use the supplied local motion-design parody.
 - No experience depends on external streaming media or opens a dangerous destination.

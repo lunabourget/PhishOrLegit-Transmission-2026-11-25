@@ -46,7 +46,7 @@ Chemins permanents : `/scan/G-S1` à `/scan/G-S7`, `/scan/O-S1` à `/scan/O-S7`,
 
 ## Routes LINK
 
-Les routes `/link/L01` à `/link/L10` existent, sont validées et sont pré-générées lors de l'export. Elles affichent encore une coquille de route : l'expérience de navigateur contrôlé, les choix Click/Report et les conséquences doivent être développés.
+Les routes `/link/L01` à `/link/L10` sont pré-générées lors de l'export. Chaque carte affiche maintenant son aperçu contrôlé ; les choix Click/Report révèlent ensuite le verdict, l'explication et la conséquence de plateau. Aucune destination externe ne s'ouvre. Les aperçus et explications sont définis dans `src/data/links/catalog.ts`.
 
 | ID  | Verdict attendu |
 | --- | --------------- |

@@ -80,8 +80,8 @@ Use component state inside a scenario when possible. Add a feature-level store o
 
 ## Deployment boundary
 
-The project targets GitHub Pages through a static Next.js export and a GitHub Actions workflow. Project-site deployments automatically use the repository name as their base path, while a `<owner>.github.io` user-site repository stays at the root. No custom domain, paid hosting service, remote repository, or public deployment has been created yet.
+The project is publicly deployed on GitHub Pages through a static Next.js export and a GitHub Actions workflow. The current URL is `https://lunabourget.github.io/PhishOrLegit-Transmission-2026-11-25/`. Project-site deployments automatically use the repository name as their base path, while a `<owner>.github.io` user-site repository stays at the root. No custom domain or paid hosting service is used.
 
-The final GitHub Pages URL becomes part of the physical product contract. QR assets are generated only after the repository name and route catalog are frozen, then verified from the final print artwork. Existing Claude artifact QR codes are prototypes only.
+The final GitHub Pages URL and QR codes are part of the physical product contract and are now frozen. Do not regenerate the QR codes unless the experience's behavior changes. Older Claude artifact QR codes remain prototypes and must not be used.
 
 Generated call audio and the motion-design parody are stored as authorized local assets. Runtime flows must not depend on ElevenLabs, YouTube, Claude artifacts, or another external media service.

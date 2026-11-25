@@ -12,7 +12,7 @@ L'application est en anglais. La documentation de transmission est en français.
 
 ## État actuel en une phrase
 
-La base technique, le design iOS/Liquid Glass, le scanner QR, les 21 expériences Scan me et le déploiement statique GitHub Pages sont réalisés et testés ; les 10 expériences LINK complètes, les médias définitifs, le quiz, le glossaire, les QR finaux et la publication restent à terminer.
+La base technique, le design iOS/Liquid Glass, le scanner QR, les 21 expériences Scan me, les dix aperçus LINK interactifs et le déploiement GitHub Pages public sont réalisés ; les QR définitifs sont gelés. La parodie locale, le quiz, le glossaire et les nouveaux fichiers d'impression restent à terminer.
 
 ## Réalisé
 
@@ -24,26 +24,25 @@ La base technique, le design iOS/Liquid Glass, le scanner QR, les 21 expérience
 - 21 routes Scan me entièrement branchées : sept vertes, sept orange et sept rouges.
 - Moteurs réutilisables pour les simulations Mail, Messages et Voicemail.
 - Vote physique PHISH/LEGIT, sélection d'indice, correction et conséquence de plateau.
-- 10 routes LINK stables, encore limitées à leur coquille fonctionnelle.
+- 10 cartes LINK interactives avec choix Click/Report, explication révélée et conséquence de plateau.
 - Règles v9 configurées et testées dans le domaine métier.
 - Export statique compatible GitHub Pages, y compris lorsqu'il est servi sous `/<nom-du-depot>`.
 - Workflow GitHub Actions prêt à publier automatiquement `main`.
-- 25 tests unitaires et 58 tests Playwright sur Chromium iPhone et WebKit iPhone.
+- 25 tests unitaires ; les deux tests LINK ciblés passent sur Chromium iPhone.
 - Classeur v9 de 70 cartes rédigées disponible dans le paquet de transmission.
 - Six scripts ElevenLabs prêts dans `docs/AUDIO-SCRIPTS.md`.
 - Six fichiers audio M4A intégrés sous `public/audio/`, avec transcriptions repliées par défaut.
 
 ## Non réalisé ou à finaliser
 
-1. Créer le dépôt GitHub, pousser le projet et activer GitHub Pages avec la source **GitHub Actions**.
-2. Construire le vrai parcours des 10 cartes LINK : navigateur contrôlé, choix Click/Report, correction et conséquence.
-3. Fournir et intégrer la parodie motion design locale utilisée après certaines erreurs.
-4. Ajouter le quiz final de cinq questions et le glossaire cybersécurité.
-5. Décider si le dessin libre tactile est encore requis ; la sélection sémantique accessible fonctionne déjà.
-6. Confirmer définitivement le score orange `+3`, actuellement l'unique valeur déduite.
-7. Générer les QR finaux seulement après gel du nom du dépôt GitHub.
-8. Régénérer les fichiers physiques v9 et tester chaque QR imprimé sur iOS et Android.
-9. Effectuer une validation réelle sur iPhone/Safari et un audit d'accessibilité final.
+1. Fournir et intégrer la parodie motion design locale utilisée après certaines erreurs.
+2. Ajouter le quiz final de cinq questions et le glossaire cybersécurité.
+3. Décider si le dessin libre tactile est encore requis ; la sélection sémantique accessible fonctionne déjà.
+4. Confirmer définitivement le score orange `+3`, actuellement l'unique valeur déduite.
+5. Produire les nouveaux fichiers physiques v9 en utilisant les QR définitifs existants, puis vérifier leur impression sur iOS et Android.
+6. Effectuer une validation réelle sur iPhone/Safari et un audit d'accessibilité final.
+
+Ne pas régénérer les QR sauf changement explicite de fonctionnement.
 
 ## Règles validées
 
@@ -111,19 +110,19 @@ pnpm check
 pnpm test:e2e
 ```
 
-## Déploiement prévu
+## Déploiement public
 
-Le projet doit utiliser GitHub Pages sans domaine personnalisé. Si le dépôt s'appelle `PhishOrLegit`, l'adresse attendue est :
+Le site est actuellement public sur GitHub Pages, sans domaine personnalisé :
 
 ```text
-https://UTILISATEUR.github.io/PhishOrLegit/
+https://lunabourget.github.io/PhishOrLegit-Transmission-2026-11-25/
 ```
 
-Le code calcule automatiquement le préfixe à partir de `GITHUB_REPOSITORY`. Aucun nom d'utilisateur ni nom de dépôt n'est codé en dur. Les étapes exactes sont dans `docs/DEPLOYMENT.md`.
+Les mises à jour de `main` sont publiées par le workflow GitHub Actions. Le code calcule automatiquement le préfixe à partir de `GITHUB_REPOSITORY`.
 
 ## État Git
 
-Au moment de cette transmission, le projet est dans une branche locale `main`, sans dépôt distant et sans commit initial. Tous les fichiers appartiennent au projet et doivent être ajoutés au premier commit. Ne pas pousser `node_modules`, `.next`, `out`, les rapports de tests ou des secrets ; `.gitignore` les exclut déjà.
+Le dépôt distant `origin` est configuré. Vérifier `git status` avant toute modification ou commit ; ne pas pousser `node_modules`, `.next`, `out`, les rapports de tests ou des secrets. Les QR définitifs sont gelés et ne doivent pas être régénérés sauf changement explicite de fonctionnement.
 
 ## Source de vérité
 

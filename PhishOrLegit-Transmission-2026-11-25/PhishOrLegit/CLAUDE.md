@@ -19,7 +19,7 @@ The in-app language is English. All brands and identities are fictional. No pers
 - Zustand is intentionally not installed. Add it only when shared client state cannot stay local to a feature.
 - There is no database, authentication, analytics, or remote data collection.
 - Breach affects every pawn except the pawn that landed on the Breach space.
-- Final QR codes point directly to permanent routes on GitHub Pages and are generated only after the repository name and Pages URL are frozen.
+- Final QR codes point directly to permanent routes on the public GitHub Pages site and are frozen; do not regenerate them unless the experience's behavior changes.
 - Call audio and the motion-design parody are authorized local assets. Do not add runtime dependencies on external media services.
 
 ## Source precedence
@@ -66,4 +66,4 @@ Never silently resolve a contradiction. Record it in `docs/GAME-RULES.md` and ke
 
 ## Current status and next recommended milestone
 
-All 21 Scan me scenarios are implemented and covered by browser tests. The 10 LINK identifiers have stable route shells but still need their controlled browser, Click/Report decision, correction, movement consequence, and local parody integration. After the LINK flow, integrate the six local audio files, the supplied parody, the quiz and glossary, then publish through the prepared GitHub Pages workflow. Real-device iPhone testing remains required.
+All 21 Scan me scenarios are implemented and covered by browser tests. All 10 LINK routes now show controlled previews and reveal the answer, explanation, and board consequence after Click/Report. The site is public on GitHub Pages and its final QR codes are frozen. The supplied local motion-design parody, quiz, and glossary remain to be integrated. Real-device iPhone testing remains required.

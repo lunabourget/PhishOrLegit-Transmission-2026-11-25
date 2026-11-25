@@ -7,7 +7,7 @@
 - iOS semantic tokens, light and dark appearances, safe areas, motion, and glass materials.
 - Initial reusable navigation, button, segmented-control, list, tab-bar, icon, and message-row components.
 - Internal component workshop at `/dev`.
-- Permanent Scan me and LINK route shells with validated v9 identifiers.
+- Permanent Scan me and LINK routes with validated v9 identifiers.
 - Configurable game rules and pure card-outcome logic.
 - Source reconciliation and project documentation.
 - Legacy QR fragment compatibility for prototype identifiers.
@@ -42,9 +42,8 @@ Status: the reusable Mail, Messages, and Voicemail renderers are implemented and
 
 ## Milestone 4: LINK flow
 
-- Build controlled browser and address inspection surfaces.
-- Implement click and report choices.
-- Add configurable shortcut and movement consequences.
+Status: all 10 LINK routes have controlled previews, Click/Report choices, and post-choice answers, explanations, and board consequences. Integrating the supplied local motion-design parody for the rickroll outcome remains.
+
 - Integrate the supplied local motion-design parody for the rickroll outcome.
 
 ## Milestone 5: review, quiz, and glossary
@@ -58,6 +57,6 @@ Status: the reusable Mail, Messages, and Voicemail renderers are implemented and
 - Real-device Safari testing and accessibility audit.
 - Performance profiling and asset optimization.
 - Offline and degraded-mode strategy.
-- Freeze the GitHub repository name and route IDs, generate replacement QR codes from the final Pages URL, then decode and smoke-test the final print artwork.
+- Use the already-finalized QR codes in the new physical-card artwork; do not regenerate them unless the experience's behavior changes.
 - Security and privacy review.
-- Publish the static export through the prepared GitHub Pages workflow after the repository is connected.
+- Maintain the public static export through the GitHub Pages workflow after changes to `main`.

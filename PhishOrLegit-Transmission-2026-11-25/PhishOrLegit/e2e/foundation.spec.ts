@@ -46,8 +46,42 @@ test("keeps permanent Scan me and LINK routes", async ({ page }) => {
 
   await page.goto("/link/L02");
   await expect(
-    page.getByRole("heading", { name: "LINK route reserved" }),
+    page.getByRole("heading", { name: "School Wi-Fi" }),
   ).toBeVisible();
+});
+
+test("simulates LINK clicks and reports without opening destinations", async ({
+  page,
+}) => {
+  await page.goto("/link/L01");
+  await expect(page.getByText("Official domain.")).not.toBeVisible();
+
+  await page.getByRole("button", { name: "Click link" }).click();
+  await expect(
+    page.getByRole("heading", { name: "This link is legitimate." }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Shortcut · follow the dashed arrow"),
+  ).toBeVisible();
+  await expect(page.getByText("Official domain.")).toBeVisible();
+  await expect(page).toHaveURL(/\/link\/L01$/);
+
+  await page.getByRole("button", { name: "Try another action" }).click();
+  await page.getByRole("button", { name: "Report link" }).click();
+  await expect(page.getByText("Stay on the LINK space")).toBeVisible();
+
+  await page.goto("/link/L02");
+  await page.getByRole("button", { name: "Click link" }).click();
+  await expect(page.getByText("Rickroll · move back 3")).toBeVisible();
+  await expect(
+    page.getByText(
+      "The real school domain is yourschool.edu. Urgency: 'today'.",
+    ),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Try another action" }).click();
+  await page.getByRole("button", { name: "Report link" }).click();
+  await expect(page.getByText("Move forward 2")).toBeVisible();
 });
 
 test("redirects legacy printed-card fragments", async ({ page }) => {
