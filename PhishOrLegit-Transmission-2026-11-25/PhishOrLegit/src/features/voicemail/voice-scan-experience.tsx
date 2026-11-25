@@ -22,7 +22,7 @@ const difficultyLabels = {
 } as const;
 
 type VoiceScanExperienceProps = {
-  callerDetail: string;
+  callerDetail?: string;
   clueCorrection: string;
   clueTitle: string;
   scenario: Scenario;
@@ -67,7 +67,9 @@ export function VoiceScanExperience({
             </div>
             <span className={styles.callType}>Incoming voice message</span>
             <h1 className={styles.callerName}>{scenario.sender}</h1>
-            <span className={styles.callerDetail}>{callerDetail}</span>
+            {callerDetail ? (
+              <span className={styles.callerDetail}>{callerDetail}</span>
+            ) : null}
 
             <div aria-hidden="true" className={styles.waveform}>
               {waveformHeights.map((height, index) => (
