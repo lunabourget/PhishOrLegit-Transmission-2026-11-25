@@ -21,7 +21,7 @@ Le nom du dépôt n'est pas codé en dur. `next.config.ts` lit `GITHUB_REPOSITOR
 3. Ajouter le dépôt distant et pousser la branche `main`.
 4. Sur GitHub, ouvrir **Settings → Pages**.
 5. Dans **Build and deployment**, choisir **Source: GitHub Actions**.
-6. Ouvrir l'onglet **Actions** et vérifier le workflow `Deploy Next.js site to GitHub Pages`.
+6. Ouvrir l'onglet **Actions** et vérifier le workflow `Deploy Next.js site to GitHub Pages`, défini dans `.github/workflows/deploy-pages.yml` à la racine du dépôt.
 7. Attendre la réussite des jobs `build` et `deploy`, puis ouvrir l'URL publiée.
 
 Exemple de commandes, à adapter avec l'URL réelle du dépôt :
@@ -33,7 +33,7 @@ git remote add origin https://github.com/UTILISATEUR/PhishOrLegit.git
 git push -u origin main
 ```
 
-Le workflow `.github/workflows/deploy-pages.yml` installe Node.js et pnpm, exécute `pnpm check`, produit `out/`, envoie l'artefact puis déploie GitHub Pages.
+Le workflow `.github/workflows/deploy-pages.yml`, situé à la racine du dépôt, installe Node.js et pnpm, exécute `pnpm check` dans le dossier de l'application, produit `out/`, envoie l'artefact puis déploie GitHub Pages.
 
 ## Vérification avant création des QR
 

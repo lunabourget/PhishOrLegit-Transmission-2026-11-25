@@ -2,7 +2,7 @@
 
 Phish or Legit? is the mobile-first digital companion to a physical cybersecurity board game. A player scans a QR code on a physical card and opens a controlled simulation of an email, text message, link, or voicemail. The phone supports investigation and correction; the physical board remains the source of movement, voting, and victory.
 
-This repository contains the production web application foundation. It is prepared for static deployment to GitHub Pages through GitHub Actions, but it is not deployed yet.
+This repository contains the production web application foundation. It is configured for static deployment to GitHub Pages through GitHub Actions; publishing still requires selecting GitHub Actions as the Pages source and pushing the workflow to `main`.
 
 ## Requirements
 
@@ -36,7 +36,7 @@ pnpm test:e2e
 
 ## GitHub Pages
 
-Pushing `main` triggers `.github/workflows/deploy-pages.yml`. The workflow detects the repository name, exports the app under the matching `/<repository>` base path, validates every route, and publishes the generated `out/` directory. In the repository settings, select **Settings → Pages → Source: GitHub Actions** before the first deployment.
+Pushing `main` triggers the repository-root workflow at `.github/workflows/deploy-pages.yml`. The workflow builds this app from its subdirectory, detects the repository name, exports it under the matching `/<repository>` base path, validates every route, and publishes the generated `out/` directory. In repository settings, select **Settings → Pages → Build and deployment → Source: GitHub Actions** before the first deployment.
 
 ## Current routes
 
