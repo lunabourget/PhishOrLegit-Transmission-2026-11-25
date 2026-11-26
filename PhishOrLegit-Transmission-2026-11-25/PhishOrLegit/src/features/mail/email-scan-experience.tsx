@@ -9,6 +9,7 @@ import { DeviceCanvas } from "@/components/layout/device-canvas";
 import type { Scenario } from "@/domain/scenarios/schema";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
 import { useScanReview } from "@/features/review/use-scan-review";
+import { publicHomeUrl } from "@/lib/public-path";
 
 import styles from "./g-s1-experience.module.css";
 
@@ -93,7 +94,13 @@ export function EmailScanExperience({
     <DeviceCanvas>
       <div className={classNames("screen", styles.screen)}>
         <NavigationBar
-          leading={<IconButton icon="back" label="Back to Inbox" />}
+          leading={
+            <IconButton
+              icon="back"
+              label="Back to Inbox"
+              onClick={() => window.location.assign(publicHomeUrl)}
+            />
+          }
           title="Mail"
           trailing={<IconButton icon="ellipsis" label="Message actions" />}
         />

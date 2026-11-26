@@ -7,7 +7,7 @@ import { SystemIcon } from "@/components/ios/system-icon";
 import { DeviceCanvas } from "@/components/layout/device-canvas";
 import { findVoiceScript } from "@/data/scenarios/voice-scripts";
 import type { Scenario } from "@/domain/scenarios/schema";
-import { publicPath } from "@/lib/public-path";
+import { publicHomeUrl, publicPath } from "@/lib/public-path";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
 import { useScanReview } from "@/features/review/use-scan-review";
 
@@ -45,7 +45,13 @@ export function VoiceScanExperience({
     <DeviceCanvas>
       <div className={"screen " + styles.screen}>
         <NavigationBar
-          leading={<IconButton icon="back" label="Back to Recents" />}
+          leading={
+            <IconButton
+              icon="back"
+              label="Back to Recents"
+              onClick={() => window.location.assign(publicHomeUrl)}
+            />
+          }
           title="Voicemail"
           trailing={<IconButton icon="ellipsis" label="Call details" />}
         />

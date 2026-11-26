@@ -3,11 +3,13 @@
 import { useState } from "react";
 
 import { GlassButton } from "@/components/ios/glass-button";
+import { IconButton } from "@/components/ios/icon-button";
 import { NavigationBar } from "@/components/ios/navigation-bar";
 import { SystemIcon } from "@/components/ios/system-icon";
 import { DeviceCanvas } from "@/components/layout/device-canvas";
 import type { LinkCatalogEntry } from "@/data/links/catalog";
 import { currentGameRules } from "@/domain/game/rules";
+import { publicHomeUrl } from "@/lib/public-path";
 
 import styles from "./link-experience.module.css";
 
@@ -34,7 +36,16 @@ export function LinkExperience({ link }: { link: LinkCatalogEntry }) {
   return (
     <DeviceCanvas>
       <div className={`screen ${styles.screen}`}>
-        <NavigationBar title={`LINK · ${link.id}`} />
+        <NavigationBar
+          leading={
+            <IconButton
+              icon="back"
+              label="Back to Home"
+              onClick={() => window.location.assign(publicHomeUrl)}
+            />
+          }
+          title={`LINK · ${link.id}`}
+        />
         <div className={`scroll-content ${styles.content}`}>
           <div className={styles.cardLabel}>
             <span>LINK card</span>
