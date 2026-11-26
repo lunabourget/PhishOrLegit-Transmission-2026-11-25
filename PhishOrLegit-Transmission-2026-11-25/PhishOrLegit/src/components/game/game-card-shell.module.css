@@ -1,0 +1,195 @@
+.screen {
+  min-height: 100dvh;
+  background: var(--game-background);
+  color: var(--game-text);
+  color-scheme: dark;
+}
+
+.scroller {
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: calc(var(--safe-top) + 1rem) calc(var(--safe-right) + 1rem)
+    calc(var(--safe-bottom) + 1.5rem) calc(var(--safe-left) + 1rem);
+  overscroll-behavior-y: contain;
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  position: relative;
+  width: min(100%, 34rem);
+  min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom) - 2.5rem);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2rem;
+  background: var(--game-surface);
+  overflow-wrap: anywhere;
+}
+
+.cornerFrame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cornerFrame span {
+  position: absolute;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-color: var(--game-easy);
+  border-style: solid;
+  border-width: 0;
+}
+
+.card[data-accent="orange"] .cornerFrame span {
+  border-color: var(--game-medium);
+}
+
+.card[data-accent="red"] .cornerFrame span {
+  border-color: var(--game-hard);
+}
+
+.card[data-accent="link"] .cornerFrame span {
+  border-color: var(--game-accent-link);
+}
+
+.cornerFrame span:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+
+.cornerFrame span:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+
+.cornerFrame span:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+}
+
+.cornerFrame span:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+
+.cardHeader {
+  position: relative;
+  display: grid;
+  min-height: 2.75rem;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.25rem 1rem;
+  border-bottom: 1px solid var(--game-border);
+}
+
+.backButton {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  cursor: pointer;
+  place-items: center;
+  border: 0;
+  border-radius: var(--game-radius-small);
+  background: transparent;
+  color: var(--game-text);
+}
+
+.backButton:hover {
+  background: var(--game-content);
+}
+
+.backButton:focus-visible {
+  outline: 2px solid var(--game-text);
+  outline-offset: 2px;
+}
+
+.cardIdentity {
+  display: grid;
+  min-width: 0;
+  gap: 0.2rem;
+}
+
+.identityLine,
+.channel {
+  margin: 0;
+}
+
+.identityLine {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.kindLabel {
+  color: var(--game-easy);
+}
+
+.card[data-accent="orange"] .kindLabel {
+  color: var(--game-medium);
+}
+
+.card[data-accent="red"] .kindLabel {
+  color: var(--game-hard);
+}
+
+.card[data-accent="link"] .kindLabel {
+  color: var(--game-accent-link);
+}
+
+.identityLine > span:last-child {
+  color: var(--game-muted);
+}
+
+.channel {
+  color: var(--game-muted);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.movement {
+  color: var(--game-easy);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.card[data-accent="orange"] .movement {
+  color: var(--game-medium);
+}
+
+.card[data-accent="red"] .movement {
+  color: var(--game-hard);
+}
+
+.cardContent {
+  display: grid;
+  min-width: 0;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+}
+
+@media (min-width: 43.75rem) {
+  .scroller {
+    padding-top: 1.25rem;
+  }
+
+  .card {
+    min-height: calc(100dvh - 2.5rem);
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}

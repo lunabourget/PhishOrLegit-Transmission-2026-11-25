@@ -1,8 +1,16 @@
-# iOS interface foundations
+# Interface design system
 
-## Design intent
+## Game companion surfaces
 
-The interface recreates the hierarchy, spacing, interaction patterns, and material logic of current iOS system apps without redistributing proprietary Apple assets or pretending that a web page is a native application. The primary reference is the official iOS 27 UI Kit and Apple Human Interface Guidelines.
+The home, `/scan`, and `/link` experiences use a restrained board-game visual system: a charcoal background, one flat card surface, square corners, and color accents taken from the physical game's difficulty and verdict conventions. They use the `--game-*` tokens in `src/styles/tokens.css`; difficulty colors are separate from PHISH and LEGIT colors.
+
+`BoardHomeScreen` assembles the original logo, a short game introduction, the real `CardScanner`, three accessible tutorial cards, and the training notice. `GameCardShell` provides the shared scenario header, difficulty or LINK accent, return-to-home action, and single content surface. Message, clue, and result states remain regular HTML and preserve the existing game rules. `GameAudioPlayer` provides custom controls for local recordings, with duration metadata and a readable transcript fallback.
+
+`public/board-style/icons/` supplies the small, decorative home and training-notice icons. The scenario and result copy is not embedded in images. The scanner, manual card-code entry, and safe LINK actions remain functional and use their existing routing and rule data.
+
+## System-style component foundations
+
+System-style utility components and the `/dev` workshop retain their existing visual treatment. They use project-owned SVG icon paths and semantic system color tokens; they do not bundle proprietary Apple assets or represent the web app as a native application.
 
 Official references:
 
@@ -11,7 +19,7 @@ Official references:
 - https://developer.apple.com/documentation/TechnologyOverviews/liquid-glass
 - https://developer.apple.com/sf-symbols/
 
-## Foundations
+### Foundations
 
 ### Color
 
@@ -35,7 +43,7 @@ The iOS 27 pass follows Apple's revised Liquid Glass treatment: stronger diffusi
 
 Motion is short and physical. Buttons compress slightly on press. Selection movement uses a restrained spring. `prefers-reduced-motion` removes nonessential animation.
 
-## Implemented components
+### System-style components
 
 - `NavigationBar`
 - `GlassButton`
@@ -49,15 +57,25 @@ Motion is short and physical. Buttons compress slightly on press. Selection move
 
 All components expose semantic labels and focus states. The `/dev` route presents their normal, selected, disabled, destructive, light, and dark states.
 
-## Desktop and mobile behavior
+### Game components
+
+- `BoardHomeScreen`
+- `GameCardShell`
+- `ScanReviewPanel`
+- `GameAudioPlayer`
+- `CardScanner`
+
+The scanner action uses the same component and QR resolver as before. LINK buttons remain equally weighted before selection, and scenario verdicts appear only after the player has voted.
+
+### Desktop and mobile behavior
 
 On a real mobile viewport, content uses the device screen directly. The application does not add a phone frame, fake status bar, or duplicate home indicator. On desktop, `DeviceCanvas` supplies a 402 × 874 development frame so the reference viewport can be reviewed consistently.
 
-## Icon policy
+### Icon policy
 
 The initial components use small project-owned SVG paths that represent common actions. They are not SF Symbols and must not be described as such. A production icon pass may use legally permitted exported symbols or equivalent project-owned artwork after licensing and distribution requirements are confirmed.
 
-## Accessibility baseline
+### Accessibility baseline
 
 - 44 × 44 minimum hit areas.
 - Visible keyboard focus.
@@ -66,5 +84,5 @@ The initial components use small project-owned SVG paths that represent common a
 - Increased contrast support.
 - Reduced motion and reduced transparency support.
 - Text layouts that can grow rather than clipping.
-- Audio scenarios will require synchronized transcripts or captions.
-- Drawing interactions will require a non-drawing alternative.
+- Voice scenarios provide a readable transcript alongside custom playback controls.
+- Game tutorials use native modal dialogs with close controls, Escape handling, and focus return.

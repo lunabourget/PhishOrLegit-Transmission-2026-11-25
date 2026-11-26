@@ -170,6 +170,7 @@ export function CardScanner({ className }: CardScannerProps) {
   return (
     <>
       <GlassButton
+        appearance="game"
         className={[styles.launchButton, className].filter(Boolean).join(" ")}
         onClick={beginScanner}
         prominence="primary"

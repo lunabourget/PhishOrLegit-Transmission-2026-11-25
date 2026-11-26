@@ -16,31 +16,31 @@
   --color-red: #ff3b30;
   --color-indigo: #5856d6;
 
-  /* Physical-board palette, preserved through iOS semantic materials */
+  /* Physical-game semantics */
   --difficulty-green: #6f9f42;
   --difficulty-orange: #d68c20;
   --difficulty-red: #c53f3f;
   --game-link: #168f7e;
   --game-shield: #2e72bd;
-  --game-ink: #0d0f14;
-  --game-surface: #171b25;
 
-  /* Board-style UI kit */
-  --board-bg: #04070d;
-  --board-panel: #0c1220;
-  --board-panel-raised: #10192b;
-  --board-green: #8ad05a;
-  --board-orange: #f2a531;
-  --board-red: #f14b4b;
-  --board-teal: #1cd3c0;
-  --board-blue: #3b82f6;
-  --board-white: #f5f7fa;
-  --board-pink: #d95ed4;
-  --board-gray: #95a0b5;
-  --board-line: #202a3e;
-  --board-radius-card: 1.75rem;
-  --board-radius-panel: 1.25rem;
-  --board-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  /* Game interface palette keeps verdict and difficulty colors distinct. */
+  --game-background: #08090b;
+  --game-surface: #101218;
+  --game-content: #171c26;
+  --game-border: #292d36;
+  --game-text: #f5f5f7;
+  --game-muted: #969fb0;
+  --game-easy: #80b65b;
+  --game-medium: #f5a12c;
+  --game-hard: #e34643;
+  --game-accent-link: #28b49f;
+  --game-2fa: #397ed5;
+  --game-phish: #a64d9d;
+  --game-legit: #34bde3;
+  --game-success: #80b65b;
+  --game-error: #e34643;
+  --game-radius-small: 0.25rem;
+  --game-radius-medium: 0.5rem;
 
   /* Typography */
   --font-system:

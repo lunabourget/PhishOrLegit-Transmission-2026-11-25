@@ -1,0 +1,419 @@
+.screen {
+  min-height: 100dvh;
+  background: var(--game-background);
+  color: var(--game-text);
+  color-scheme: dark;
+}
+
+.content {
+  display: grid;
+  width: min(100%, 38rem);
+  gap: clamp(1.75rem, 6vw, 3rem);
+  margin: 0 auto;
+  padding: calc(var(--safe-top) + 1rem) calc(var(--safe-right) + 1.125rem)
+    calc(var(--safe-bottom) + 1.25rem) calc(var(--safe-left) + 1.125rem);
+}
+
+.header {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  min-height: var(--hit-target);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.logoTile {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  border: 1px solid var(--game-border);
+  border-radius: var(--game-radius-small);
+  padding: 0.3rem;
+  background: white;
+}
+
+.logoTile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.menuButton {
+  display: grid;
+  width: var(--hit-target);
+  height: var(--hit-target);
+  flex: 0 0 var(--hit-target);
+  cursor: pointer;
+  place-items: center;
+  border: 1px solid var(--game-border);
+  border-radius: var(--game-radius-small);
+  background: var(--game-surface);
+  color: var(--game-text);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  display: grid;
+  width: min(16rem, 100%);
+  gap: 0.25rem;
+  border: 1px solid var(--game-border);
+  padding: 0.375rem;
+  background: var(--game-surface);
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menu a {
+  display: flex;
+  min-height: var(--hit-target);
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  color: var(--game-text);
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  background: var(--game-content);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: 0.875rem;
+  padding: 0.25rem 0 0;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--game-accent-link);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.5rem, 11vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.96;
+}
+
+.description {
+  max-width: 29rem;
+  margin: 0;
+  color: var(--game-muted);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.heroArt {
+  position: relative;
+  width: min(100%, 15rem);
+  height: 7.5rem;
+  justify-self: center;
+  margin: 0.1rem 0 0.25rem;
+}
+
+.artCard,
+.artCardBack {
+  position: absolute;
+  display: grid;
+  width: 7.5rem;
+  height: 6.5rem;
+  align-content: center;
+  justify-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--game-border);
+  background: var(--game-surface);
+}
+
+.artCardBack {
+  top: 0.5rem;
+  left: 3rem;
+  transform: rotate(9deg);
+  background: var(--game-content);
+}
+
+.artCornerTop,
+.artCornerBottom {
+  position: absolute;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-color: var(--game-medium);
+  border-style: solid;
+}
+
+.artCornerTop {
+  top: 0.4rem;
+  left: 0.4rem;
+  border-width: 2px 0 0 2px;
+}
+
+.artCornerBottom {
+  right: 0.4rem;
+  bottom: 0.4rem;
+  border-width: 0 2px 2px 0;
+}
+
+.artBackLabel {
+  color: var(--game-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.artCard {
+  top: 0.25rem;
+  left: 1.75rem;
+  border-color: var(--game-easy);
+  transform: rotate(-6deg);
+}
+
+.artCardLabel,
+.artCardDifficulty {
+  color: var(--game-muted);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.artCard img {
+  width: 3rem;
+  height: 3rem;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+.artCardRule,
+.artCardRuleShort {
+  width: 4.25rem;
+  height: 2px;
+  background: var(--game-border);
+}
+
+.artCardRuleShort {
+  width: 2.75rem;
+}
+
+.artCardDifficulty {
+  color: var(--game-easy);
+  letter-spacing: 0.04em;
+}
+
+.scanArea {
+  display: grid;
+  width: 100%;
+  gap: 0.625rem;
+  scroll-margin-top: 1rem;
+}
+
+.scanArea .scanButton {
+  width: 100%;
+  min-height: 3.5rem;
+  border-radius: var(--game-radius-small);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.scanArea > p {
+  margin: 0;
+  color: var(--game-muted);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.howSection {
+  display: grid;
+  gap: 1rem;
+  scroll-margin-top: 1rem;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  color: var(--game-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.sectionMarker {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--game-accent-link);
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stepCard {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 8.25rem;
+  align-content: center;
+  justify-items: start;
+  gap: 0.75rem;
+  cursor: pointer;
+  border: 1px solid var(--game-border);
+  padding: 1rem 0.75rem;
+  background: var(--game-surface);
+  color: var(--game-text);
+  text-align: left;
+}
+
+.stepCard[data-step="scan"] {
+  border-top: 2px solid var(--game-2fa);
+}
+
+.stepCard[data-step="investigate"] {
+  border-top: 2px solid var(--game-medium);
+}
+
+.stepCard[data-step="vote"] {
+  border-top: 2px solid var(--game-accent-link);
+}
+
+.stepCard img {
+  width: 1.75rem;
+  height: 1.75rem;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+.stepNumber {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  color: var(--game-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.stepTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.trainingNotice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid var(--game-border);
+  padding-top: 1rem;
+  color: var(--game-muted);
+}
+
+.trainingNotice img {
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+.trainingNotice p {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.trainingNotice strong {
+  color: var(--game-text);
+}
+
+.dialog {
+  width: min(calc(100% - 2rem), 25rem);
+  border: 1px solid var(--game-border);
+  padding: 1.25rem;
+  background: var(--game-surface);
+  color: var(--game-text);
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 78%);
+}
+
+.dialogStep {
+  margin: 0 0 0.5rem;
+  color: var(--game-accent-link);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.dialogDescription {
+  margin: 0.75rem 0 1.25rem;
+  color: var(--game-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.dialogClose {
+  width: 100%;
+  min-height: var(--hit-target);
+  cursor: pointer;
+  border: 1px solid var(--game-border);
+  padding: 0.5rem 0.75rem;
+  background: var(--game-content);
+  color: var(--game-text);
+  font-weight: 700;
+}
+
+@media (max-width: 24rem) {
+  .stepsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stepCard {
+    min-height: 4.5rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .stepNumber {
+    position: static;
+    grid-row: span 2;
+    align-self: center;
+    font-size: 0.875rem;
+  }
+
+  .stepCard img {
+    display: none;
+  }
+}

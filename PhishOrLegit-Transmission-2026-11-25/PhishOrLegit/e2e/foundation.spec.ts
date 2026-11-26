@@ -7,13 +7,13 @@ test("opens the scan-first landing screen", async ({ page }) => {
     page.getByText("Phish or Legit?", { exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "PHISH OR LEGIT?" }),
+    page.getByRole("heading", { name: "THINK BEFORE YOU CLICK." }),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Scan a card", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "HOW IT WORKS" }),
+    page.getByRole("heading", { name: "HOW TO PLAY" }),
   ).toBeVisible();
   await expect(page.getByText("Training simulation only.")).toBeVisible();
 });
@@ -28,11 +28,8 @@ test("uses matching board-card shells across scan difficulties", async ({
   ] as const) {
     await page.goto(`/scan/${cardId}`);
 
-    const card = page.getByTestId("scan-card-shell");
-    await expect(card).toHaveAttribute("data-difficulty", difficulty);
-    await expect(card.locator(":scope > p").first()).toHaveText(
-      /PHISH\s*OR\s*LEGIT\?/,
-    );
+    const card = page.getByTestId("game-card-shell");
+    await expect(card).toHaveAttribute("data-accent", difficulty);
     await expect(page.getByText(`${cardId}`, { exact: true })).toBeVisible();
   }
 });
@@ -45,7 +42,7 @@ test("keeps the home and primary scan action within narrow viewports", async ({
     await page.goto("/");
 
     const dimensions = await page.evaluate(() => {
-      const content = document.querySelector("[class*=homeContent]");
+      const content = document.querySelector("[data-testid=home-content]");
       const scanAction = document.getElementById("scan-a-card");
 
       if (!content || !scanAction) {
@@ -80,8 +77,8 @@ test("opens and closes accessible home shortcuts and tutorials", async ({
   await menuButton.click();
   const menu = page.getByRole("navigation", { name: "Home shortcuts" });
   await expect(menu).toBeVisible();
-  await menu.getByRole("link", { name: "How it works" }).click();
-  await expect(page).toHaveURL(/#how-it-works$/);
+  await menu.getByRole("link", { name: "How to play" }).click();
+  await expect(page).toHaveURL(/#how-to-play$/);
   await expect(menu).toBeHidden();
 
   await page.getByRole("button", { name: "Open menu" }).click();
@@ -265,7 +262,7 @@ test("completes the G-S1 phishing and Spot it flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
   await expect(page.getByText("Board movement")).toBeVisible();
   await expect(page.getByText("Clue bonus", { exact: true })).toBeVisible();
@@ -277,7 +274,7 @@ test("shows the safe wrong-answer consequence for G-S1", async ({ page }) => {
   await page.getByRole("button", { name: "Choose LEGIT" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "This one is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
   await expect(page.getByText("Play parody")).toBeVisible();
 });
@@ -296,7 +293,7 @@ test("completes the G-S2 legitimate SMS flow", async ({ page }) => {
   await page.getByRole("button", { name: "Looks legit" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
   await expect(page.getByText("Clue bonus", { exact: true })).toBeVisible();
 });
@@ -313,10 +310,11 @@ test("completes the G-S3 call flow with the accessible transcript", async ({
     "src",
     "/audio/g-s3.m4a",
   );
+  await expect(page.getByRole("button", { name: "Play audio" })).toBeVisible();
   await expect(
     page.getByText("Press one and give your card number"),
   ).not.toBeVisible();
-  await page.getByText("Reveal transcript hint").click();
+  await page.getByText("Read transcript").click();
   await expect(
     page.getByText("Press one and give your card number"),
   ).toBeVisible();
@@ -329,7 +327,7 @@ test("completes the G-S3 call flow with the accessible transcript", async ({
   await page.getByRole("button", { name: "We named the clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -347,7 +345,7 @@ test("completes the G-S4 look-alike domain flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
   await expect(page.getByText("prize@sh0pnow-gifts.win")).toBeVisible();
 });
@@ -359,14 +357,14 @@ test("completes the G-S5 legitimate school call flow", async ({ page }) => {
     page.getByRole("heading", { name: "School front desk" }),
   ).toBeVisible();
   await expect(page.getByText("No need to call back.")).not.toBeVisible();
-  await page.getByText("Reveal transcript hint").click();
+  await page.getByText("Read transcript").click();
   await expect(page.getByText("No need to call back.")).toBeVisible();
   await page.getByRole("button", { name: "We listened and voted" }).click();
   await page.getByRole("button", { name: "Choose LEGIT" }).click();
   await page.getByRole("button", { name: "We named the clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
 });
 
@@ -382,7 +380,7 @@ test("completes the G-S6 fake school payment link flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -397,7 +395,7 @@ test("completes the G-S7 legitimate school-learning flow", async ({ page }) => {
   await page.getByRole("button", { name: "Looks legit" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
 });
 
@@ -413,9 +411,9 @@ test("completes the O-S1 fake CloudBox sender flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
-  await expect(page.getByText("+3", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("board-movement-consequence")).toHaveText("+3");
 });
 
 test("completes the O-S2 legitimate NovaBank flow", async ({ page }) => {
@@ -429,7 +427,7 @@ test("completes the O-S2 legitimate NovaBank flow", async ({ page }) => {
   await page.getByRole("button", { name: "Looks legit" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
 });
 
@@ -443,7 +441,7 @@ test("completes the O-S3 look-alike ParcelGo link flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -459,7 +457,7 @@ test("completes the O-S4 fake school reset link flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -469,13 +467,14 @@ test("completes the O-S5 fake bank voice flow", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "NovaBank fraud team" }),
   ).toBeVisible();
+  await page.getByText("Read transcript").click();
   await expect(page.getByText("tell me the code")).toBeVisible();
   await page.getByRole("button", { name: "We listened and voted" }).click();
   await page.getByRole("button", { name: "Choose PHISH" }).click();
   await page.getByRole("button", { name: "We named the clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -485,13 +484,14 @@ test("completes the O-S6 legitimate IT notice flow", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "School IT desk" }),
   ).toBeVisible();
+  await page.getByText("Read transcript").click();
   await expect(page.getByText("No action is needed.")).toBeVisible();
   await page.getByRole("button", { name: "We listened and voted" }).click();
   await page.getByRole("button", { name: "Choose LEGIT" }).click();
   await page.getByRole("button", { name: "We named the clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
 });
 
@@ -507,7 +507,7 @@ test("completes the O-S7 fake refund link flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -527,15 +527,18 @@ test("completes the R-S1 deepfake manager call flow", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Your manager" }),
   ).toBeVisible();
-  await expect(page.getByText("urgent transfer of 9,800 euros")).toBeVisible();
+  await page.getByText("Read transcript").click();
+  await expect(
+    page.getByText("urgent transfer of nine thousand eight hundred euros"),
+  ).toBeVisible();
   await page.getByRole("button", { name: "We listened and voted" }).click();
   await page.getByRole("button", { name: "Choose PHISH" }).click();
   await page.getByRole("button", { name: "We named the clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
-  await expect(page.getByText("+4", { exact: true })).toBeVisible();
+  await expect(page.getByTestId("board-movement-consequence")).toHaveText("+4");
 });
 
 test("completes the R-S2 legitimate HR call flow", async ({ page }) => {
@@ -549,7 +552,7 @@ test("completes the R-S2 legitimate HR call flow", async ({ page }) => {
   await page.getByRole("button", { name: "We named the clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
 });
 
@@ -565,7 +568,7 @@ test("completes the R-S3 hidden payroll-domain flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -579,7 +582,7 @@ test("completes the R-S4 spoofed bank thread flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -593,7 +596,7 @@ test("completes the R-S5 stolen 2FA-code request flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -611,7 +614,7 @@ test("completes the R-S6 disguised HTML attachment flow", async ({ page }) => {
   await page.getByRole("button", { name: "Check my clue" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is phishing." }),
+    page.getByRole("heading", { name: "This is phishing." }),
   ).toBeVisible();
 });
 
@@ -626,7 +629,7 @@ test("completes the R-S7 legitimate security-notice flow", async ({ page }) => {
   await page.getByRole("button", { name: "Looks legit" }).click();
 
   await expect(
-    page.getByRole("heading", { name: "Correct. This is legitimate." }),
+    page.getByRole("heading", { name: "This is legitimate." }),
   ).toBeVisible();
 });
 

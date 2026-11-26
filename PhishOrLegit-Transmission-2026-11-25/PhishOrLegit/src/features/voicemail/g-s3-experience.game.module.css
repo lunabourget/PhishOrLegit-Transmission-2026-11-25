@@ -1,0 +1,62 @@
+.callCard {
+  display: grid;
+  min-width: 0;
+  justify-items: start;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--game-border);
+  padding-bottom: 1.25rem;
+  text-align: left;
+}
+
+.callType,
+.callerDetail {
+  color: var(--game-muted);
+  font-size: 0.8125rem;
+}
+
+.callType {
+  margin: 0;
+  color: var(--game-accent-link);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.callerName {
+  margin: 0;
+  color: var(--game-text);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.transcript {
+  width: 100%;
+  border-top: 1px solid var(--game-border);
+  padding-top: 0.25rem;
+  text-align: left;
+}
+
+.transcript summary {
+  min-height: var(--hit-target);
+  cursor: pointer;
+  color: var(--game-muted);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: var(--hit-target);
+}
+
+.transcript p {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  color: var(--game-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.clueActions {
+  display: grid;
+  gap: 0.75rem;
+}

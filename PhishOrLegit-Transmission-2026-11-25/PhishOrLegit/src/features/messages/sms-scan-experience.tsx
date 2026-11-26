@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 import { GlassButton } from "@/components/ios/glass-button";
+import { GameCardShell } from "@/components/game/game-card-shell";
 import type { Scenario } from "@/domain/scenarios/schema";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
-import { ScanCardShell } from "@/features/scan/scan-card-shell";
 import { useScanReview } from "@/features/review/use-scan-review";
 
-import styles from "./g-s2-experience.module.css";
+import styles from "./g-s2-experience.game.module.css";
 
 type SmsScanExperienceProps = {
   avatarLabel: string;
@@ -42,10 +42,11 @@ export function SmsScanExperience({
   }
 
   return (
-    <ScanCardShell
+    <GameCardShell
       backLabel="Back to Messages"
       channel="TEXT MESSAGE"
       difficulty={scenario.difficulty}
+      kind="scan"
       scenarioId={scenario.id}
     >
       <section
@@ -116,14 +117,14 @@ export function SmsScanExperience({
           clueMode === "legit" ? (
             <div className={styles.clueActions}>
               <GlassButton
-                appearance="board"
+                appearance="game"
                 onClick={() => review.finishClue(true)}
                 prominence="primary"
               >
                 Looks legit
               </GlassButton>
               <GlassButton
-                appearance="board"
+                appearance="game"
                 onClick={() => review.finishClue(false)}
               >
                 Something looks fake
@@ -131,7 +132,7 @@ export function SmsScanExperience({
             </div>
           ) : (
             <GlassButton
-              appearance="board"
+              appearance="game"
               disabled={!evidenceSelected}
               onClick={() => review.finishClue(evidenceSelected)}
               prominence="primary"
@@ -151,7 +152,7 @@ export function SmsScanExperience({
         }
         difficulty={scenario.difficulty}
         explanation={scenario.explanation}
-        investigateBody="Read the text message, then vote with your physical PHISH or LEGIT card."
+        contextInstruction="Read the message carefully, then vote on the board."
         onBeginVote={() => {
           setNotice("");
           review.beginVote();
@@ -162,6 +163,6 @@ export function SmsScanExperience({
         restartLabel="Review the text"
         voteCorrect={review.voteCorrect}
       />
-    </ScanCardShell>
+    </GameCardShell>
   );
 }

@@ -1,0 +1,164 @@
+.preview {
+  min-width: 0;
+  border-bottom: 1px solid var(--game-border);
+  padding-bottom: 1.25rem;
+}
+
+.previewHeader {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.875rem;
+  border-bottom: 1px solid var(--game-border);
+  padding: 0 0 1rem;
+}
+
+.previewIcon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  border: 1px solid var(--game-accent-link);
+  color: var(--game-accent-link);
+}
+
+.senderDetails {
+  min-width: 0;
+}
+
+.previewType {
+  color: var(--game-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.sender {
+  margin: 0.2rem 0 0;
+  color: var(--game-text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.previewBody {
+  padding-top: 1rem;
+}
+
+.previewBody > p {
+  margin: 0 0 1rem;
+  color: var(--game-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.destination {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.625rem;
+  border-left: 2px solid var(--game-accent-link);
+  padding: 0.75rem;
+  background: var(--game-content);
+  color: var(--game-accent-link);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.destination svg {
+  margin-top: 0.1rem;
+}
+
+.destination span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.actionPanel,
+.resultPanel {
+  display: grid;
+  min-width: 0;
+  gap: 0.875rem;
+  border-top: 1px solid var(--game-border);
+  padding-top: 1rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--game-text);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.actionDescription,
+.explanation {
+  margin: 0.5rem 0 0;
+  color: var(--game-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.actionButtons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.actionButtons > button,
+.resultPanel > button {
+  min-height: 3.25rem;
+}
+
+.outcome {
+  color: var(--game-accent-link);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.resultPanel[data-verdict="PHISH"] .outcome {
+  color: var(--game-phish);
+}
+
+.resultPanel[data-verdict="LEGIT"] .outcome {
+  color: var(--game-legit);
+}
+
+.explanation {
+  margin-top: 0;
+}
+
+.consequence {
+  display: grid;
+  gap: 0.5rem;
+  border-top: 1px solid var(--game-border);
+  border-bottom: 1px solid var(--game-border);
+  padding: 0.875rem 0;
+  color: var(--game-text);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.consequence > span {
+  color: var(--game-muted);
+  font-size: 0.875rem;
+}
+
+.consequence strong {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 21rem) {
+  .actionButtons {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

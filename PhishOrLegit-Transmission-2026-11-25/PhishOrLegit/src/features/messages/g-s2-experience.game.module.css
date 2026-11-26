@@ -1,0 +1,108 @@
+.conversation {
+  min-width: 0;
+  border-bottom: 1px solid var(--game-border);
+  padding-bottom: 1.25rem;
+}
+
+.contactHeader {
+  display: flex;
+  min-height: 3.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--game-border);
+  padding-bottom: 0.875rem;
+}
+
+.avatar {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  border: 1px solid var(--game-accent-link);
+  background: var(--game-content);
+  color: var(--game-accent-link);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.contactName {
+  margin: 0;
+  color: var(--game-text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.contactDetail,
+.timestamp {
+  color: var(--game-muted);
+  font-size: 0.8125rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.timestamp {
+  justify-self: end;
+}
+
+.incomingBubble {
+  min-width: 0;
+  border-left: 2px solid var(--game-2fa);
+  padding: 0.25rem 0 0.25rem 0.875rem;
+  color: var(--game-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.messageLink,
+.messageRequest {
+  display: inline;
+  min-height: 2.75rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  padding: 0.125rem 0.2rem;
+  background: transparent;
+  color: var(--game-accent-link);
+  font: inherit;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+
+.messageRequest {
+  color: var(--game-hard);
+  text-decoration: none;
+}
+
+.evidenceSelected {
+  outline: 2px solid var(--game-medium);
+  outline-offset: 2px;
+  background: var(--game-content);
+}
+
+.notice {
+  margin: 0;
+  color: var(--game-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.notice:empty {
+  display: none;
+}
+
+.clueActions {
+  display: grid;
+  gap: 0.75rem;
+}

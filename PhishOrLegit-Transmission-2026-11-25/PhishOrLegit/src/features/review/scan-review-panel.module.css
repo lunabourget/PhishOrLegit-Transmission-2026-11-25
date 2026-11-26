@@ -1,63 +1,58 @@
 .actionPanel,
 .decisionPanel,
 .resultPanel {
-  min-width: 0;
-  border: 1px solid
-    color-mix(in srgb, var(--scan-accent) 46%, var(--board-line));
-  border-top: 3px solid var(--scan-accent);
-  border-radius: var(--board-radius-panel);
-  padding: 1rem;
-  background:
-    linear-gradient(
-      145deg,
-      color-mix(in srgb, var(--scan-accent) 7%, transparent),
-      transparent 55%
-    ),
-    var(--board-panel);
-  box-shadow: none;
-}
-
-.actionPanel {
   display: grid;
-  gap: 0.9rem;
+  min-width: 0;
+  gap: 0.75rem;
+  margin: 0;
+  border-top: 1px solid var(--game-border);
+  padding: 1rem 0 0;
 }
 
 .panelTitle,
 .resultTitle {
   margin: 0;
-  color: var(--board-white);
-  font-size: 1.08rem;
-  font-weight: 900;
+  color: var(--game-text);
+  font-size: clamp(1.375rem, 5vw, 1.75rem);
+  font-weight: 700;
   letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 .panelBody,
 .resultExplanation {
-  margin: 0.4rem 0 0;
-  color: var(--board-gray);
-  font-size: 0.88rem;
-  line-height: 1.45;
-}
-
-.decisionPanel,
-.resultPanel {
-  display: grid;
-  gap: 0.7rem;
+  margin: 0;
+  color: var(--game-muted);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .stepLabel {
-  color: var(--scan-accent);
-  font-size: 0.68rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  color: var(--game-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .voteButtons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.6rem;
-  margin-top: 0.15rem;
+  gap: 0.75rem;
+}
+
+.voteButtons > button {
+  min-height: 3.5rem;
+  border-radius: var(--game-radius-small);
+  background: var(--game-surface);
+  color: var(--game-text);
+}
+
+.voteButtons > button:first-child {
+  border-color: var(--game-phish);
+}
+
+.voteButtons > button:last-child {
+  border-color: var(--game-legit);
 }
 
 .resultIcon {
@@ -65,59 +60,61 @@
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
-  border: 1px solid var(--board-red);
-  border-radius: 0.7rem;
-  background: color-mix(in srgb, var(--board-red) 12%, var(--board-bg));
-  color: var(--board-red);
+  color: var(--game-error);
 }
 
 .resultIcon[data-correct="true"] {
-  border-color: var(--board-green);
-  background: color-mix(in srgb, var(--board-green) 12%, var(--board-bg));
-  color: var(--board-green);
+  color: var(--game-success);
+}
+
+.outcome {
+  color: var(--game-text);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.resultExplanation {
+  max-width: 42rem;
 }
 
 .consequenceList {
-  overflow: hidden;
-  margin: 0.15rem 0;
-  border: 1px solid var(--board-line);
-  border-radius: 0.8rem;
-  background: var(--board-bg);
+  display: grid;
+  margin: 0.25rem 0;
+  border-top: 1px solid var(--game-border);
 }
 
 .consequenceRow {
   display: flex;
-  min-height: 2.8rem;
+  min-height: 2.75rem;
   align-items: center;
   justify-content: space-between;
-  gap: 0.8rem;
-  padding: 0.6rem 0.8rem;
-  color: var(--board-gray);
-  font-size: 0.82rem;
-}
-
-.consequenceRow + .consequenceRow {
-  border-top: 1px solid var(--board-line);
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--game-border);
+  padding: 0.625rem 0;
+  color: var(--game-muted);
+  font-size: 1rem;
 }
 
 .consequenceRow strong {
-  color: var(--board-green);
+  color: var(--game-text);
   text-align: right;
-}
-
-.consequenceRow strong[data-outcome="parody"] {
-  color: var(--board-red);
 }
 
 .leaderNote,
 .clueCorrection {
   margin: 0;
-  color: var(--board-gray);
-  font-size: 0.75rem;
-  line-height: 1.4;
+  color: var(--game-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .clueCorrection strong {
-  color: var(--board-white);
+  color: var(--game-text);
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 21rem) {
+  .voteButtons {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

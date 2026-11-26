@@ -21,7 +21,7 @@ type ScanReviewPanelProps = {
   clueTitle: string;
   difficulty: Difficulty;
   explanation: string;
-  investigateBody: string;
+  contextInstruction: string;
   onBeginVote: () => void;
   onRestart: () => void;
   onVote: (vote: Verdict) => void;
@@ -44,7 +44,7 @@ export function ScanReviewPanel({
   clueTitle,
   difficulty,
   explanation,
-  investigateBody,
+  contextInstruction,
   onBeginVote,
   onRestart,
   onVote,
@@ -69,12 +69,9 @@ export function ScanReviewPanel({
           key="message-actions"
           transition={transition}
         >
-          <div>
-            <h2 className={styles.panelTitle}>Investigate first</h2>
-            <p className={styles.panelBody}>{investigateBody}</p>
-          </div>
+          <p className={styles.panelBody}>{contextInstruction}</p>
           <GlassButton
-            appearance="board"
+            appearance="game"
             onClick={onBeginVote}
             prominence="primary"
           >
@@ -92,11 +89,10 @@ export function ScanReviewPanel({
           key="vote"
           transition={transition}
         >
-          <span className={styles.stepLabel}>Your board vote</span>
-          <h2 className={styles.panelTitle}>Phish or legit?</h2>
+          <h2 className={styles.panelTitle}>PHISH OR LEGIT?</h2>
           <div className={styles.voteButtons}>
             <GlassButton
-              appearance="board"
+              appearance="game"
               aria-label="Choose PHISH"
               onClick={() => onVote("PHISH")}
               prominence="destructive"
@@ -104,7 +100,7 @@ export function ScanReviewPanel({
               PHISH
             </GlassButton>
             <GlassButton
-              appearance="board"
+              appearance="game"
               aria-label="Choose LEGIT"
               onClick={() => onVote("LEGIT")}
               prominence="primary"
@@ -124,7 +120,9 @@ export function ScanReviewPanel({
           key="clue"
           transition={transition}
         >
-          <span className={styles.stepLabel}>Bonus · +1</span>
+          <span className={styles.stepLabel}>
+            Spot it bonus · +{currentGameRules.cards.spotItBonus}
+          </span>
           <h2 className={styles.panelTitle}>{clueTitle}</h2>
           <p className={styles.panelBody}>{clueBody}</p>
           {clueContent}
@@ -146,18 +144,16 @@ export function ScanReviewPanel({
               size={28}
             />
           </div>
-          <span className={styles.stepLabel}>Answer · {answer}</span>
-          <h2 className={styles.resultTitle}>
-            {voteCorrect
-              ? "Correct. This is " + answerLabel + "."
-              : "This one is " + answerLabel + "."}
-          </h2>
+          <span className={styles.outcome} data-correct={voteCorrect}>
+            {voteCorrect ? "Correct" : "Not quite"}
+          </span>
+          <h2 className={styles.resultTitle}>This is {answerLabel}.</h2>
           <p className={styles.resultExplanation}>{explanation}</p>
 
           <div className={styles.consequenceList}>
             <div className={styles.consequenceRow}>
               <span>Board movement</span>
-              <strong>
+              <strong data-testid="board-movement-consequence">
                 {voteCorrect
                   ? "+" + baseMovement
                   : wrongMovement > 0
@@ -189,7 +185,7 @@ export function ScanReviewPanel({
             <div className={styles.clueCorrection}>{clueCorrection}</div>
           ) : null}
 
-          <GlassButton appearance="board" onClick={onRestart}>
+          <GlassButton appearance="game" onClick={onRestart}>
             {restartLabel}
           </GlassButton>
         </motion.section>

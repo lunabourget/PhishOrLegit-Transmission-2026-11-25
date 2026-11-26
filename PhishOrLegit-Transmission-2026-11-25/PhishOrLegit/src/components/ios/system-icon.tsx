@@ -8,7 +8,9 @@ export type SystemIconName =
   | "envelope"
   | "globe"
   | "message"
+  | "pause"
   | "phone"
+  | "play"
   | "shield"
   | "warning"
   | "xmark";
@@ -51,9 +53,32 @@ const paths: Record<SystemIconName, React.ReactNode> = {
       <path d="M20.5 11.2c0 4.5-4.1 8.1-9.2 8.1-1 0-2-.1-2.9-.4L4 21l1.4-3.7a7.6 7.6 0 0 1-3.1-6.1c0-4.5 4.1-8.1 9.2-8.1s9 3.6 9 8.1Z" />
     </>
   ),
+  pause: (
+    <>
+      <rect
+        fill="currentColor"
+        height="14"
+        rx="1"
+        stroke="none"
+        width="4"
+        x="6"
+        y="5"
+      />
+      <rect
+        fill="currentColor"
+        height="14"
+        rx="1"
+        stroke="none"
+        width="4"
+        x="14"
+        y="5"
+      />
+    </>
+  ),
   phone: (
     <path d="M7 3.5 4.5 6c-.9.9.1 4.2 3.7 7.8s6.9 4.6 7.8 3.7l2.5-2.5-4-3-1.7 1.7c-1.2-.5-2.5-1.5-3.7-2.7a13.2 13.2 0 0 1-2.7-3.7L8 5.5l-1-2Z" />
   ),
+  play: <path d="M8 5.5v13l10-6.5-10-6.5Z" fill="currentColor" stroke="none" />,
   shield: (
     <path d="M12 2.75c2.4 1.7 5 2.6 7.5 2.8v5.3c0 5.2-3.1 8.7-7.5 10.4-4.4-1.7-7.5-5.2-7.5-10.4V5.55c2.5-.2 5.1-1.1 7.5-2.8Z" />
   ),

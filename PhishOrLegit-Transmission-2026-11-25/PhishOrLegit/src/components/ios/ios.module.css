@@ -117,32 +117,30 @@
   color: var(--color-red);
 }
 
-.glassButton_board {
-  border: 1px solid var(--board-line);
-  border-radius: 0.75rem;
-  background: var(--board-panel-raised);
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
-  color: var(--board-white);
+.glassButton_game {
+  border: 1px solid var(--game-border);
+  border-radius: var(--game-radius-small);
+  background: var(--game-content);
+  box-shadow: none;
+  color: var(--game-text);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
-.glassButton_board::before {
+.glassButton_game::before {
   display: none;
 }
 
-.glassButton_board.glassButton_primary {
-  border-color: var(--board-green);
-  background: var(--board-green);
-  box-shadow: 0 3px 0 color-mix(in srgb, var(--board-green) 58%, black);
-  color: #07100a;
+.glassButton_game.glassButton_primary {
+  border-color: var(--game-text);
+  background: var(--game-text);
+  color: var(--game-background);
 }
 
-.glassButton_board.glassButton_destructive {
-  border-color: var(--board-red);
-  background: var(--board-red);
-  box-shadow: 0 3px 0 color-mix(in srgb, var(--board-red) 58%, black);
-  color: #fff;
+.glassButton_game.glassButton_destructive {
+  border-color: var(--game-phish);
+  background: var(--game-content);
+  color: var(--game-phish);
 }
 
 .iconButton {

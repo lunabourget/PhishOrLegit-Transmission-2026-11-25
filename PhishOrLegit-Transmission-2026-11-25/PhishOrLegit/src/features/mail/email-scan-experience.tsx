@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 import { GlassButton } from "@/components/ios/glass-button";
+import { GameCardShell } from "@/components/game/game-card-shell";
 import type { Scenario } from "@/domain/scenarios/schema";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
 import { useScanReview } from "@/features/review/use-scan-review";
-import { ScanCardShell } from "@/features/scan/scan-card-shell";
 
-import styles from "./g-s1-experience.module.css";
+import styles from "./g-s1-experience.game.module.css";
 
 type EvidenceId = "sender-address" | "subject" | "message" | "action";
 
@@ -82,10 +82,11 @@ export function EmailScanExperience({
   }
 
   return (
-    <ScanCardShell
+    <GameCardShell
       backLabel="Back to Inbox"
       channel="EMAIL"
       difficulty={scenario.difficulty}
+      kind="scan"
       scenarioId={scenario.id}
     >
       <article aria-label="Email message" className={styles.mailCard}>
@@ -182,14 +183,14 @@ export function EmailScanExperience({
           clueMode === "legit" ? (
             <div className={styles.clueActions}>
               <GlassButton
-                appearance="board"
+                appearance="game"
                 onClick={() => review.finishClue(true)}
                 prominence="primary"
               >
                 Looks legit
               </GlassButton>
               <GlassButton
-                appearance="board"
+                appearance="game"
                 onClick={() => review.finishClue(false)}
               >
                 Something looks fake
@@ -197,7 +198,7 @@ export function EmailScanExperience({
             </div>
           ) : (
             <GlassButton
-              appearance="board"
+              appearance="game"
               disabled={!selectedEvidence}
               onClick={() =>
                 review.finishClue(selectedEvidence === correctEvidence)
@@ -225,7 +226,7 @@ export function EmailScanExperience({
         }
         difficulty={scenario.difficulty}
         explanation={scenario.explanation}
-        investigateBody="Inspect the email, then vote with your physical PHISH or LEGIT card."
+        contextInstruction="Inspect the email, then vote on the board."
         onBeginVote={() => {
           setNotice("");
           review.beginVote();
@@ -236,6 +237,6 @@ export function EmailScanExperience({
         restartLabel="Review the email"
         voteCorrect={review.voteCorrect}
       />
-    </ScanCardShell>
+    </GameCardShell>
   );
 }

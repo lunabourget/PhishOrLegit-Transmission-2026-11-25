@@ -1,17 +1,15 @@
 "use client";
 
 import { GlassButton } from "@/components/ios/glass-button";
-import { SystemIcon } from "@/components/ios/system-icon";
+import { GameCardShell } from "@/components/game/game-card-shell";
 import { findVoiceScript } from "@/data/scenarios/voice-scripts";
 import type { Scenario } from "@/domain/scenarios/schema";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
-import { ScanCardShell } from "@/features/scan/scan-card-shell";
 import { useScanReview } from "@/features/review/use-scan-review";
 import { publicPath } from "@/lib/public-path";
 
-import styles from "./g-s3-experience.module.css";
-
-const waveformHeights = [18, 30, 22, 40, 28, 48, 32, 20, 38, 26, 44, 24];
+import { GameAudioPlayer } from "./game-audio-player";
+import styles from "./g-s3-experience.game.module.css";
 
 type VoiceScanExperienceProps = {
   callerDetail?: string;
@@ -34,40 +32,26 @@ export function VoiceScanExperience({
   }
 
   return (
-    <ScanCardShell
+    <GameCardShell
       backLabel="Back to Recents"
       channel="VOICE MESSAGE"
       difficulty={scenario.difficulty}
+      kind="scan"
       scenarioId={scenario.id}
     >
       <section aria-label="Voice message" className={styles.callCard}>
-        <div className={styles.callerIcon}>
-          <SystemIcon name="phone" size={28} />
-        </div>
-        <span className={styles.callType}>Incoming voice message</span>
+        <p className={styles.callType}>VOICE MESSAGE</p>
         <h1 className={styles.callerName}>{scenario.sender}</h1>
         {callerDetail ? (
           <span className={styles.callerDetail}>{callerDetail}</span>
         ) : null}
-
-        <div aria-hidden="true" className={styles.waveform}>
-          {waveformHeights.map((height, index) => (
-            <span key={index} style={{ height: height + "%" }} />
-          ))}
-        </div>
-
-        <audio
-          aria-label={`Call audio for ${scenario.id}`}
-          className={styles.audioPlayer}
-          controls
-          preload="none"
-        >
-          <source src={publicPath(voiceScript.assetPath)} type="audio/mp4" />
-          Your browser does not support audio playback.
-        </audio>
-
+        <GameAudioPlayer
+          key={scenario.id}
+          label={`Call recording for ${scenario.id}`}
+          src={publicPath(voiceScript.assetPath)}
+        />
         <details className={styles.transcript}>
-          <summary>Reveal transcript hint</summary>
+          <summary>Read transcript</summary>
           <p>{voiceScript.transcript}</p>
         </details>
       </section>
@@ -79,14 +63,14 @@ export function VoiceScanExperience({
         clueContent={
           <div className={styles.clueActions}>
             <GlassButton
-              appearance="board"
+              appearance="game"
               onClick={() => review.finishClue(true)}
               prominence="primary"
             >
               We named the clue
             </GlassButton>
             <GlassButton
-              appearance="board"
+              appearance="game"
               onClick={() => review.finishClue(false)}
             >
               Reveal the clue
@@ -98,7 +82,7 @@ export function VoiceScanExperience({
         clueTitle={clueTitle}
         difficulty={scenario.difficulty}
         explanation={scenario.explanation}
-        investigateBody="Listen to the call, then vote with your physical PHISH or LEGIT card. Reveal the transcript hint only if needed."
+        contextInstruction="Listen carefully, then vote on the board."
         onBeginVote={review.beginVote}
         onRestart={review.restart}
         onVote={review.chooseVote}
@@ -106,6 +90,6 @@ export function VoiceScanExperience({
         restartLabel="Review the call"
         voteCorrect={review.voteCorrect}
       />
-    </ScanCardShell>
+    </GameCardShell>
   );
 }
