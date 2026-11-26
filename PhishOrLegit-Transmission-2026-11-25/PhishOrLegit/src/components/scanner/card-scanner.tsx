@@ -21,6 +21,9 @@ import { resolveScannedCard } from "@/domain/routing/resolve-scanned-card";
 import styles from "./card-scanner.module.css";
 
 type ScannerStatus = "starting" | "scanning" | "invalid" | "error";
+type CardScannerProps = {
+  className?: string | undefined;
+};
 
 function cameraErrorMessage(error: unknown) {
   if (error instanceof DOMException) {
@@ -36,7 +39,7 @@ function cameraErrorMessage(error: unknown) {
   return "The camera could not start. Enter the card code below.";
 }
 
-export function CardScanner() {
+export function CardScanner({ className }: CardScannerProps) {
   const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
   const controlsRef = useRef<IScannerControls | null>(null);
@@ -167,7 +170,7 @@ export function CardScanner() {
   return (
     <>
       <GlassButton
-        className={styles.launchButton}
+        className={[styles.launchButton, className].filter(Boolean).join(" ")}
         onClick={beginScanner}
         prominence="primary"
       >
