@@ -1,116 +1,123 @@
 .actionPanel,
 .decisionPanel,
 .resultPanel {
-  border: 0;
-  border-radius: var(--radius-large);
-  padding: var(--space-5);
-  background: var(--color-secondary-background);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 12px 34px rgba(0, 0, 0, 0.08);
+  min-width: 0;
+  border: 1px solid
+    color-mix(in srgb, var(--scan-accent) 46%, var(--board-line));
+  border-top: 3px solid var(--scan-accent);
+  border-radius: var(--board-radius-panel);
+  padding: 1rem;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--scan-accent) 7%, transparent),
+      transparent 55%
+    ),
+    var(--board-panel);
+  box-shadow: none;
 }
 
 .actionPanel {
   display: grid;
-  gap: var(--space-4);
-}
-
-.actionPanel > button,
-.decisionPanel > button,
-.resultPanel > button {
-  width: 100%;
+  gap: 0.9rem;
 }
 
 .panelTitle,
 .resultTitle {
   margin: 0;
-  font-size: var(--text-title-3);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  color: var(--board-white);
+  font-size: 1.08rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
 }
 
 .panelBody,
 .resultExplanation {
-  margin: var(--space-2) 0 0;
-  color: var(--color-secondary-label);
-  font-size: var(--text-subheadline);
-  line-height: 1.4;
+  margin: 0.4rem 0 0;
+  color: var(--board-gray);
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .decisionPanel,
 .resultPanel {
   display: grid;
-  gap: var(--space-3);
+  gap: 0.7rem;
 }
 
 .stepLabel {
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
-  font-weight: 650;
-  letter-spacing: 0.04em;
+  color: var(--scan-accent);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .voteButtons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.15rem;
 }
 
 .resultIcon {
   display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   place-items: center;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-red) 15%, transparent);
-  color: var(--color-red);
+  border: 1px solid var(--board-red);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--board-red) 12%, var(--board-bg));
+  color: var(--board-red);
 }
 
 .resultIcon[data-correct="true"] {
-  background: color-mix(in srgb, var(--color-green) 15%, transparent);
-  color: var(--color-green);
+  border-color: var(--board-green);
+  background: color-mix(in srgb, var(--board-green) 12%, var(--board-bg));
+  color: var(--board-green);
 }
 
 .consequenceList {
   overflow: hidden;
-  margin: var(--space-2) 0;
-  border-radius: var(--radius-medium);
-  border: 0.5px solid var(--color-separator);
-  background: var(--color-tertiary-background);
+  margin: 0.15rem 0;
+  border: 1px solid var(--board-line);
+  border-radius: 0.8rem;
+  background: var(--board-bg);
 }
 
 .consequenceRow {
   display: flex;
-  min-height: 3.25rem;
+  min-height: 2.8rem;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
-  padding: 0.7rem var(--space-4);
+  gap: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  color: var(--board-gray);
+  font-size: 0.82rem;
 }
 
 .consequenceRow + .consequenceRow {
-  border-top: 0.5px solid var(--color-separator);
+  border-top: 1px solid var(--board-line);
 }
 
 .consequenceRow strong {
-  color: var(--color-green);
+  color: var(--board-green);
+  text-align: right;
 }
 
 .consequenceRow strong[data-outcome="parody"] {
-  color: var(--color-red);
+  color: var(--board-red);
 }
 
 .leaderNote,
 .clueCorrection {
   margin: 0;
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
+  color: var(--board-gray);
+  font-size: 0.75rem;
   line-height: 1.4;
 }
 
 .clueCorrection strong {
-  color: var(--color-label);
+  color: var(--board-white);
   overflow-wrap: anywhere;
 }

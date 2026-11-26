@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1700" viewBox="0 0 900 1700" fill="none">
+  <path d="M70 105V70h40" stroke="#F14B4B" stroke-width="16" stroke-linecap="square"/>
+  <path d="M790 70h40v35" stroke="#F14B4B" stroke-width="16" stroke-linecap="square"/>
+  <path d="M830 1595v35h-40" stroke="#F14B4B" stroke-width="16" stroke-linecap="square"/>
+  <path d="M110 1630H70v-35" stroke="#F14B4B" stroke-width="16" stroke-linecap="square"/>
+</svg>

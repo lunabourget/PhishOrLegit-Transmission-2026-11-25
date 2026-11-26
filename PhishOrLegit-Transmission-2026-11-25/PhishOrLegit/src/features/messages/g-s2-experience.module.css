@@ -1,175 +1,114 @@
-.screen {
-  overflow: hidden;
-}
-
-.content {
-  height: 100dvh;
-  overflow-y: auto;
-  padding-bottom: calc(var(--safe-bottom) + 2rem);
-}
-
-.contextRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.difficultyBadge {
-  border-radius: var(--radius-capsule);
-  padding: 0.35rem 0.65rem;
-  background: color-mix(in srgb, var(--difficulty-green) 14%, transparent);
-  color: var(--difficulty-green);
-  font-size: var(--text-footnote);
-  font-weight: 700;
-}
-
-.difficultyBadge[data-difficulty="orange"] {
-  background: color-mix(in srgb, var(--difficulty-orange) 14%, transparent);
-  color: var(--difficulty-orange);
-}
-
-.difficultyBadge[data-difficulty="red"] {
-  background: color-mix(in srgb, var(--difficulty-red) 14%, transparent);
-  color: var(--difficulty-red);
-}
-
-.contextHint,
-.contactDetail,
-.timestamp {
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
-}
-
 .conversation {
-  overflow: visible;
+  min-width: 0;
+  border: 1px solid var(--board-line);
+  border-radius: var(--board-radius-panel);
+  padding: 1rem;
+  background: var(--board-panel-raised);
 }
 
 .contactHeader {
   display: flex;
-  min-height: 5.8rem;
-  flex-direction: column;
+  min-height: 3.75rem;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.35rem var(--space-4) var(--space-4);
-  text-align: center;
+  gap: 0.75rem;
+  border-bottom: 1px dashed var(--board-line);
+  padding-bottom: 0.75rem;
 }
 
 .avatar {
   display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
   place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #7c8cff, #3f51d8 70%, #2837a4);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.42) inset,
-    0 8px 20px rgba(63, 81, 216, 0.28);
-  color: white;
-  font-size: var(--text-title-3);
-  font-weight: 700;
+  border: 1px solid var(--board-teal);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--board-teal) 16%, var(--board-bg));
+  color: var(--board-teal);
+  font-size: 1.1rem;
+  font-weight: 900;
 }
 
 .contactName {
   margin: 0;
-  font-size: var(--text-subheadline);
-  font-weight: 650;
+  color: var(--board-white);
+  font-size: 1rem;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.contactDetail,
+.timestamp {
+  color: var(--board-gray);
+  font-size: 0.75rem;
 }
 
 .timeline {
-  display: flex;
-  min-height: 13.5rem;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: var(--space-2) 0 var(--space-5);
+  display: grid;
+  gap: 0.7rem;
+  padding-top: 0.85rem;
 }
 
 .timestamp {
-  align-self: center;
-  margin-bottom: var(--space-5);
+  justify-self: end;
 }
 
 .incomingBubble {
-  position: relative;
-  max-width: 88%;
-  border-radius: 1.25rem;
-  padding: 0.72rem 0.95rem;
-  background: var(--color-tertiary-background);
-  color: var(--color-label);
-  font-size: var(--text-body);
-  line-height: 1.38;
-}
-
-.incomingBubble::before {
-  position: absolute;
-  bottom: 0;
-  left: -0.34rem;
-  width: 0.82rem;
-  height: 0.9rem;
-  border-bottom-right-radius: 0.9rem;
-  background: var(--color-tertiary-background);
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
-  content: "";
-}
-
-.messageLink {
-  display: inline;
-  min-height: 2rem;
-  cursor: pointer;
-  border: 0;
-  border-radius: 0.45rem;
-  padding: 0.08rem 0.18rem;
-  background: transparent;
-  color: var(--color-tint);
-  font: inherit;
-  font-weight: 600;
+  min-width: 0;
+  border: 1px solid var(--board-line);
+  border-left: 4px solid var(--board-blue);
+  border-radius: 0.8rem;
+  padding: 0.85rem;
+  background: var(--board-bg);
+  color: var(--board-white);
+  font-size: 0.96rem;
+  line-height: 1.48;
   overflow-wrap: anywhere;
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.12em;
 }
 
+.messageLink,
 .messageRequest {
   display: inline;
   min-height: 2rem;
   cursor: pointer;
   border: 0;
-  border-radius: 0.45rem;
-  padding: 0.08rem 0.18rem;
-  background: color-mix(in srgb, var(--color-red) 10%, transparent);
-  color: inherit;
+  border-radius: 0.3rem;
+  padding: 0.08rem 0.16rem;
+  background: transparent;
+  color: var(--board-teal);
   font: inherit;
-  font-weight: 650;
+  font-weight: 800;
   overflow-wrap: anywhere;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.14em;
+}
+
+.messageRequest {
+  background: color-mix(in srgb, var(--board-red) 12%, var(--board-bg));
+  color: var(--board-red);
+  text-decoration: none;
 }
 
 .evidenceSelected {
-  outline: 3px solid var(--color-orange);
+  outline: 3px solid var(--board-orange);
   outline-offset: 2px;
-  background: color-mix(in srgb, var(--color-orange) 13%, transparent);
+  background: color-mix(in srgb, var(--board-orange) 15%, var(--board-bg));
 }
 
 .notice {
-  min-height: 2.6rem;
-  margin: var(--space-3) var(--space-2) 0;
-  color: var(--color-secondary-label);
-  font-size: var(--text-subheadline);
+  margin: 0;
+  color: var(--board-gray);
+  font-size: 0.78rem;
   line-height: 1.35;
 }
 
-.panelSpacing {
-  margin-top: var(--space-4);
+.notice:empty {
+  display: none;
 }
 
 .clueActions {
   display: grid;
-  gap: var(--space-2);
-}
-
-@media (min-width: 43.75rem) {
-  .content {
-    height: 874px;
-  }
+  gap: 0.55rem;
 }

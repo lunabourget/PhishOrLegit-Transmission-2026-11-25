@@ -7,7 +7,7 @@ test("opens the scan-first landing screen", async ({ page }) => {
     page.getByText("Phish or Legit?", { exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Ready to play detective?" }),
+    page.getByRole("heading", { name: "PHISH OR LEGIT?" }),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Scan a card", exact: true }),
@@ -16,6 +16,25 @@ test("opens the scan-first landing screen", async ({ page }) => {
     page.getByRole("heading", { name: "HOW IT WORKS" }),
   ).toBeVisible();
   await expect(page.getByText("Training simulation only.")).toBeVisible();
+});
+
+test("uses matching board-card shells across scan difficulties", async ({
+  page,
+}) => {
+  for (const [cardId, difficulty] of [
+    ["G-S1", "green"],
+    ["O-S1", "orange"],
+    ["R-S1", "red"],
+  ] as const) {
+    await page.goto(`/scan/${cardId}`);
+
+    const card = page.getByTestId("scan-card-shell");
+    await expect(card).toHaveAttribute("data-difficulty", difficulty);
+    await expect(card.locator(":scope > p").first()).toHaveText(
+      /PHISH\s*OR\s*LEGIT\?/,
+    );
+    await expect(page.getByText(`${cardId}`, { exact: true })).toBeVisible();
+  }
 });
 
 test("keeps the home and primary scan action within narrow viewports", async ({

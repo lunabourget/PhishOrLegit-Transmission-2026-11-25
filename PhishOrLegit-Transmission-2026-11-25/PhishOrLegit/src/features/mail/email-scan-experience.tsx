@@ -3,13 +3,10 @@
 import { useState } from "react";
 
 import { GlassButton } from "@/components/ios/glass-button";
-import { IconButton } from "@/components/ios/icon-button";
-import { NavigationBar } from "@/components/ios/navigation-bar";
-import { DeviceCanvas } from "@/components/layout/device-canvas";
 import type { Scenario } from "@/domain/scenarios/schema";
 import { ScanReviewPanel } from "@/features/review/scan-review-panel";
 import { useScanReview } from "@/features/review/use-scan-review";
-import { publicHomeUrl } from "@/lib/public-path";
+import { ScanCardShell } from "@/features/scan/scan-card-shell";
 
 import styles from "./g-s1-experience.module.css";
 
@@ -28,12 +25,6 @@ type EmailScanExperienceProps = {
   senderAddress: string;
   senderName: string;
 };
-
-const difficultyLabels = {
-  green: "EASY",
-  orange: "MEDIUM",
-  red: "HARD",
-} as const;
 
 function classNames(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
@@ -91,182 +82,160 @@ export function EmailScanExperience({
   }
 
   return (
-    <DeviceCanvas>
-      <div className={classNames("screen", styles.screen)}>
-        <NavigationBar
-          leading={
-            <IconButton
-              icon="back"
-              label="Back to Inbox"
-              onClick={() => window.location.assign(publicHomeUrl)}
-            />
-          }
-          title="Mail"
-          trailing={<IconButton icon="ellipsis" label="Message actions" />}
-        />
-
-        <div className={classNames("scroll-content", styles.content)}>
-          <div className={styles.contextRow}>
-            <span
-              className={styles.difficultyBadge}
-              data-difficulty={scenario.difficulty}
-            >
-              {scenario.id} · {difficultyLabels[scenario.difficulty]}
-            </span>
-            <span className={styles.contextHint}>Training simulation</span>
+    <ScanCardShell
+      backLabel="Back to Inbox"
+      channel="EMAIL"
+      difficulty={scenario.difficulty}
+      scenarioId={scenario.id}
+    >
+      <article aria-label="Email message" className={styles.mailCard}>
+        <div className={styles.mailHeader}>
+          <div aria-hidden="true" className={styles.avatar}>
+            {avatarLabel}
           </div>
-
-          <article aria-label="Email message" className={styles.mailCard}>
-            <div className={styles.mailHeader}>
-              <div aria-hidden="true" className={styles.avatar}>
-                {avatarLabel}
-              </div>
-              <button
-                aria-expanded={showAddress}
-                className={classNames(
-                  styles.senderButton,
-                  selectedEvidence === "sender-address" &&
-                    styles.evidenceSelected,
-                )}
-                data-testid="sender-address"
-                onClick={inspectSender}
-                type="button"
-              >
-                <span className={styles.senderName}>{senderName}</span>
-                {showAddress ? (
-                  <span className={styles.senderAddress}>{senderAddress}</span>
-                ) : (
-                  <span className={styles.inspectLabel}>
-                    Tap to inspect sender
-                  </span>
-                )}
-              </button>
-              <span className={styles.messageTime}>9:41</span>
-            </div>
-
-            {canSelectEvidence ? (
-              <button
-                className={classNames(
-                  styles.subjectButton,
-                  selectedEvidence === "subject" && styles.evidenceSelected,
-                )}
-                onClick={() => selectEvidence("subject")}
-                type="button"
-              >
-                {scenario.subject}
-              </button>
-            ) : (
-              <h1 className={styles.subject}>{scenario.subject}</h1>
+          <button
+            aria-expanded={showAddress}
+            className={classNames(
+              styles.senderButton,
+              selectedEvidence === "sender-address" && styles.evidenceSelected,
             )}
-
-            {canSelectEvidence ? (
-              <button
-                className={classNames(
-                  styles.messageButton,
-                  selectedEvidence === "message" && styles.evidenceSelected,
-                )}
-                onClick={() => selectEvidence("message")}
-                type="button"
-              >
-                {body}
-              </button>
+            data-testid="sender-address"
+            onClick={inspectSender}
+            type="button"
+          >
+            <span className={styles.senderName}>{senderName}</span>
+            {showAddress ? (
+              <span className={styles.senderAddress}>{senderAddress}</span>
             ) : (
-              <p className={styles.message}>{body}</p>
+              <span className={styles.inspectLabel}>Tap to inspect sender</span>
             )}
-
-            <button
-              className={classNames(
-                styles.fakeLink,
-                selectedEvidence === "action" && styles.evidenceSelected,
-              )}
-              onClick={() => {
-                if (canSelectEvidence) {
-                  selectEvidence("action");
-                } else {
-                  setNotice(
-                    "Link disabled. This training simulation never opens risky destinations.",
-                  );
-                }
-              }}
-              type="button"
-            >
-              {actionLabel}
-            </button>
-            {actionDetail &&
-            (canSelectEvidence || review.phase === "result") ? (
-              <span className={styles.actionDetail}>Opens: {actionDetail}</span>
-            ) : null}
-          </article>
-
-          <p aria-live="polite" className={styles.notice}>
-            {notice}
-          </p>
-
-          <ScanReviewPanel
-            answer={scenario.verdict}
-            beginLabel="We voted on the board"
-            clueBody={
-              clueMode === "legit"
-                ? "There may be no fake detail. Choose the option that best matches this email."
-                : "Tap the exact detail in the email that exposes the scam, then check your clue."
-            }
-            clueContent={
-              clueMode === "legit" ? (
-                <div className={styles.clueActions}>
-                  <GlassButton
-                    onClick={() => review.finishClue(true)}
-                    prominence="primary"
-                  >
-                    Looks legit
-                  </GlassButton>
-                  <GlassButton onClick={() => review.finishClue(false)}>
-                    Something looks fake
-                  </GlassButton>
-                </div>
-              ) : (
-                <GlassButton
-                  disabled={!selectedEvidence}
-                  onClick={() =>
-                    review.finishClue(selectedEvidence === correctEvidence)
-                  }
-                  prominence="primary"
-                >
-                  Check my clue
-                </GlassButton>
-              )
-            }
-            clueCorrect={review.clueCorrect}
-            clueCorrection={
-              <p>
-                {clueMode === "legit" ? (
-                  correction
-                ) : (
-                  <>
-                    {correctionLabel}: <strong>{correction}</strong>.
-                  </>
-                )}
-              </p>
-            }
-            clueTitle={
-              clueMode === "legit"
-                ? "Spot it or clear it"
-                : "Spot the fake detail"
-            }
-            difficulty={scenario.difficulty}
-            explanation={scenario.explanation}
-            investigateBody="Inspect the email, then vote with your physical PHISH or LEGIT card."
-            onBeginVote={() => {
-              setNotice("");
-              review.beginVote();
-            }}
-            onRestart={restart}
-            onVote={review.chooseVote}
-            phase={review.phase}
-            restartLabel="Review the email"
-            voteCorrect={review.voteCorrect}
-          />
+          </button>
+          <span className={styles.messageTime}>9:41</span>
         </div>
-      </div>
-    </DeviceCanvas>
+
+        {canSelectEvidence ? (
+          <button
+            className={classNames(
+              styles.subjectButton,
+              selectedEvidence === "subject" && styles.evidenceSelected,
+            )}
+            onClick={() => selectEvidence("subject")}
+            type="button"
+          >
+            {scenario.subject}
+          </button>
+        ) : (
+          <h1 className={styles.subject}>{scenario.subject}</h1>
+        )}
+
+        {canSelectEvidence ? (
+          <button
+            className={classNames(
+              styles.messageButton,
+              selectedEvidence === "message" && styles.evidenceSelected,
+            )}
+            onClick={() => selectEvidence("message")}
+            type="button"
+          >
+            {body}
+          </button>
+        ) : (
+          <p className={styles.message}>{body}</p>
+        )}
+
+        <button
+          className={classNames(
+            styles.fakeLink,
+            selectedEvidence === "action" && styles.evidenceSelected,
+          )}
+          onClick={() => {
+            if (canSelectEvidence) {
+              selectEvidence("action");
+            } else {
+              setNotice(
+                "Link disabled. This training simulation never opens risky destinations.",
+              );
+            }
+          }}
+          type="button"
+        >
+          {actionLabel}
+        </button>
+        {actionDetail && (canSelectEvidence || review.phase === "result") ? (
+          <span className={styles.actionDetail}>Opens: {actionDetail}</span>
+        ) : null}
+      </article>
+
+      <p aria-live="polite" className={styles.notice}>
+        {notice}
+      </p>
+
+      <ScanReviewPanel
+        answer={scenario.verdict}
+        beginLabel="We voted on the board"
+        clueBody={
+          clueMode === "legit"
+            ? "There may be no fake detail. Choose the option that best matches this email."
+            : "Tap the exact detail in the email that exposes the scam, then check your clue."
+        }
+        clueContent={
+          clueMode === "legit" ? (
+            <div className={styles.clueActions}>
+              <GlassButton
+                appearance="board"
+                onClick={() => review.finishClue(true)}
+                prominence="primary"
+              >
+                Looks legit
+              </GlassButton>
+              <GlassButton
+                appearance="board"
+                onClick={() => review.finishClue(false)}
+              >
+                Something looks fake
+              </GlassButton>
+            </div>
+          ) : (
+            <GlassButton
+              appearance="board"
+              disabled={!selectedEvidence}
+              onClick={() =>
+                review.finishClue(selectedEvidence === correctEvidence)
+              }
+              prominence="primary"
+            >
+              Check my clue
+            </GlassButton>
+          )
+        }
+        clueCorrect={review.clueCorrect}
+        clueCorrection={
+          <p>
+            {clueMode === "legit" ? (
+              correction
+            ) : (
+              <>
+                {correctionLabel}: <strong>{correction}</strong>.
+              </>
+            )}
+          </p>
+        }
+        clueTitle={
+          clueMode === "legit" ? "Spot it or clear it" : "Spot the fake detail"
+        }
+        difficulty={scenario.difficulty}
+        explanation={scenario.explanation}
+        investigateBody="Inspect the email, then vote with your physical PHISH or LEGIT card."
+        onBeginVote={() => {
+          setNotice("");
+          review.beginVote();
+        }}
+        onRestart={restart}
+        onVote={review.chooseVote}
+        phase={review.phase}
+        restartLabel="Review the email"
+        voteCorrect={review.voteCorrect}
+      />
+    </ScanCardShell>
   );
 }

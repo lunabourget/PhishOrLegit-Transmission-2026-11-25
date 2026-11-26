@@ -6,11 +6,13 @@ import type { ReactNode } from "react";
 import styles from "./ios.module.css";
 
 type GlassButtonProps = HTMLMotionProps<"button"> & {
+  appearance?: "system" | "board";
   children: ReactNode;
   prominence?: "standard" | "primary" | "destructive";
 };
 
 export function GlassButton({
+  appearance = "system",
   children,
   className,
   prominence = "standard",
@@ -21,7 +23,10 @@ export function GlassButton({
   const classes = [
     styles.glassButton,
     styles[`glassButton_${prominence}`],
-    prominence === "primary" ? undefined : "material-glass",
+    appearance === "board" ? styles.glassButton_board : undefined,
+    appearance === "system" && prominence !== "primary"
+      ? "material-glass"
+      : undefined,
     className,
   ]
     .filter(Boolean)

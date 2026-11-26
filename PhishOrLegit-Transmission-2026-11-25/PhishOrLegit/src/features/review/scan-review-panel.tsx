@@ -73,7 +73,11 @@ export function ScanReviewPanel({
             <h2 className={styles.panelTitle}>Investigate first</h2>
             <p className={styles.panelBody}>{investigateBody}</p>
           </div>
-          <GlassButton onClick={onBeginVote} prominence="primary">
+          <GlassButton
+            appearance="board"
+            onClick={onBeginVote}
+            prominence="primary"
+          >
             {beginLabel}
           </GlassButton>
         </motion.section>
@@ -92,6 +96,7 @@ export function ScanReviewPanel({
           <h2 className={styles.panelTitle}>Phish or legit?</h2>
           <div className={styles.voteButtons}>
             <GlassButton
+              appearance="board"
               aria-label="Choose PHISH"
               onClick={() => onVote("PHISH")}
               prominence="destructive"
@@ -99,6 +104,7 @@ export function ScanReviewPanel({
               PHISH
             </GlassButton>
             <GlassButton
+              appearance="board"
               aria-label="Choose LEGIT"
               onClick={() => onVote("LEGIT")}
               prominence="primary"
@@ -183,7 +189,9 @@ export function ScanReviewPanel({
             <div className={styles.clueCorrection}>{clueCorrection}</div>
           ) : null}
 
-          <GlassButton onClick={onRestart}>{restartLabel}</GlassButton>
+          <GlassButton appearance="board" onClick={onRestart}>
+            {restartLabel}
+          </GlassButton>
         </motion.section>
       ) : null}
     </AnimatePresence>

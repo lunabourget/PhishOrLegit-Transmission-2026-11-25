@@ -1,136 +1,101 @@
-.screen {
-  overflow: hidden;
-}
-
-.content {
-  height: 100dvh;
-  overflow-y: auto;
-  padding-bottom: calc(var(--safe-bottom) + 2rem);
-}
-
-.contextRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.difficultyBadge {
-  border-radius: var(--radius-capsule);
-  padding: 0.35rem 0.65rem;
-  background: color-mix(in srgb, var(--difficulty-green) 14%, transparent);
-  color: var(--difficulty-green);
-  font-size: var(--text-footnote);
-  font-weight: 700;
-}
-
-.difficultyBadge[data-difficulty="orange"] {
-  background: color-mix(in srgb, var(--difficulty-orange) 14%, transparent);
-  color: var(--difficulty-orange);
-}
-
-.difficultyBadge[data-difficulty="red"] {
-  background: color-mix(in srgb, var(--difficulty-red) 14%, transparent);
-  color: var(--difficulty-red);
-}
-
-.contextHint,
-.callType,
-.callerDetail {
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
-}
-
 .callCard {
   display: grid;
-  justify-items: center;
-  padding: var(--space-5) var(--space-4);
-  background: transparent;
-  text-align: center;
+  min-width: 0;
+  justify-items: start;
+  gap: 0.65rem;
+  border: 1px solid var(--board-line);
+  border-radius: var(--board-radius-panel);
+  padding: 1rem;
+  background: var(--board-panel-raised);
+  text-align: left;
 }
 
 .callerIcon {
   display: grid;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-bottom: var(--space-3);
+  width: 3rem;
+  height: 3rem;
   place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #55d977, #24a94a 72%, #16883b);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.44) inset,
-    0 12px 28px rgba(52, 199, 89, 0.24);
-  color: white;
+  border: 1px solid var(--board-blue);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--board-blue) 20%, var(--board-bg));
+  color: var(--board-blue);
+}
+
+.callType,
+.callerDetail {
+  color: var(--board-gray);
+  font-size: 0.78rem;
+}
+
+.callType {
+  color: var(--board-teal);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .callerName {
-  margin: 0.2rem 0;
-  font-size: var(--text-title-3);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--board-white);
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .waveform {
   display: flex;
   width: 100%;
-  height: 3.5rem;
+  height: 2.5rem;
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  margin: var(--space-5) 0 var(--space-3);
+  margin: 0.2rem 0;
+  border-radius: 0.6rem;
+  background: var(--board-bg);
 }
 
 .waveform span {
-  width: 0.22rem;
-  min-height: 0.5rem;
-  border-radius: var(--radius-capsule);
-  background: linear-gradient(180deg, #54a7ff, var(--color-tint));
-  box-shadow: 0 0 8px color-mix(in srgb, var(--color-tint) 40%, transparent);
+  width: 0.2rem;
+  min-height: 0.45rem;
+  border-radius: 999px;
+  background: var(--board-blue);
 }
 
 .audioPlayer {
   width: 100%;
   max-width: 22rem;
+  color-scheme: dark;
 }
 
 .transcript {
   width: 100%;
-  margin-top: var(--space-4);
-  border: 0;
-  border-radius: var(--radius-medium);
-  padding: 0 var(--space-4) var(--space-4);
-  background: var(--color-secondary-background);
+  border: 1px dashed var(--board-line);
+  border-radius: 0.75rem;
+  padding: 0 0.8rem 0.75rem;
+  background: var(--board-bg);
   text-align: left;
 }
 
 .transcript summary {
   min-height: var(--hit-target);
   cursor: pointer;
-  color: var(--color-tint);
-  font-size: var(--text-subheadline);
-  font-weight: 600;
+  color: var(--board-orange);
+  font-size: 0.85rem;
+  font-weight: 800;
   line-height: var(--hit-target);
 }
 
 .transcript p {
   margin: 0;
-  color: var(--color-label);
-  font-size: var(--text-subheadline);
-  line-height: 1.45;
-}
-
-.panelSpacing {
-  margin-top: var(--space-4);
+  color: var(--board-white);
+  font-size: 0.88rem;
+  line-height: 1.48;
 }
 
 .clueActions {
   display: grid;
-  gap: var(--space-2);
-}
-
-@media (min-width: 43.75rem) {
-  .content {
-    height: 874px;
-  }
+  gap: 0.55rem;
 }

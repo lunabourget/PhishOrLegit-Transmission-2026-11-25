@@ -1,60 +1,21 @@
-.screen {
-  --mail-blue: var(--color-tint);
-  overflow: hidden;
-}
-
-.content {
-  height: 100dvh;
-  overflow-y: auto;
-  padding-bottom: calc(var(--safe-bottom) + 2rem);
-}
-
-.contextRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin: 0 0 var(--space-4);
-}
-
-.difficultyBadge {
-  border-radius: var(--radius-capsule);
-  padding: 0.35rem 0.65rem;
-  background: color-mix(in srgb, var(--difficulty-green) 14%, transparent);
-  color: var(--difficulty-green);
-  font-size: var(--text-footnote);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.difficultyBadge[data-difficulty="orange"] {
-  background: color-mix(in srgb, var(--difficulty-orange) 14%, transparent);
-  color: var(--difficulty-orange);
-}
-
-.difficultyBadge[data-difficulty="red"] {
-  background: color-mix(in srgb, var(--difficulty-red) 14%, transparent);
-  color: var(--difficulty-red);
-}
-
-.contextHint {
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
-}
-
 .mailCard {
-  overflow: visible;
-  padding: 0 0 var(--space-4);
-  background: transparent;
+  display: grid;
+  min-width: 0;
+  gap: 0.8rem;
+  border: 1px solid var(--board-line);
+  border-radius: var(--board-radius-panel);
+  padding: 1rem;
+  background: var(--board-panel-raised);
 }
 
 .mailHeader {
   display: grid;
+  min-width: 0;
   grid-template-columns: 2.75rem minmax(0, 1fr) auto;
   align-items: start;
-  gap: var(--space-3);
-  padding-bottom: var(--space-4);
-  border-bottom: 0.5px solid var(--color-separator);
+  gap: 0.7rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--board-line);
 }
 
 .avatar {
@@ -62,14 +23,12 @@
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #7c8cff, #3f51d8 70%, #2837a4);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.42) inset,
-    0 8px 20px rgba(63, 81, 216, 0.24);
-  color: white;
-  font-size: var(--text-title-3);
-  font-weight: 700;
+  border: 1px solid var(--board-blue);
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--board-blue) 18%, var(--board-bg));
+  color: var(--board-white);
+  font-size: 1.15rem;
+  font-weight: 900;
 }
 
 .senderButton,
@@ -78,7 +37,7 @@
   min-width: 0;
   cursor: pointer;
   border: 0;
-  border-radius: var(--radius-small);
+  border-radius: 0.55rem;
   background: transparent;
   color: inherit;
   text-align: left;
@@ -86,8 +45,8 @@
 
 .senderButton {
   min-height: var(--hit-target);
-  margin: -0.35rem;
-  padding: 0.35rem;
+  margin: -0.3rem;
+  padding: 0.3rem;
 }
 
 .senderName,
@@ -98,45 +57,47 @@
 
 .senderName {
   overflow: hidden;
-  font-size: var(--text-body);
-  font-weight: 650;
+  font-size: 0.92rem;
+  font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .senderAddress {
   overflow-wrap: anywhere;
-  color: var(--color-secondary-label);
-  font-size: var(--text-subheadline);
-  line-height: 1.3;
+  color: var(--board-gray);
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .inspectLabel {
-  margin-top: 0.1rem;
-  color: var(--mail-blue);
-  font-size: var(--text-subheadline);
+  margin-top: 0.15rem;
+  color: var(--board-blue);
+  font-size: 0.78rem;
 }
 
 .messageTime {
-  padding-top: 0.25rem;
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
+  padding-top: 0.2rem;
+  color: var(--board-gray);
+  font-size: 0.7rem;
 }
 
 .subject,
 .subjectButton {
   width: 100%;
-  margin: var(--space-5) 0 var(--space-3);
+  margin: 0.2rem 0 0;
   padding: 0;
-  font-size: var(--text-title-2);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
+  color: var(--board-white);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .subjectButton {
   min-height: var(--hit-target);
-  padding: 0.45rem;
+  padding: 0.35rem;
 }
 
 .message,
@@ -144,165 +105,58 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  font-size: var(--text-body);
-  line-height: 1.45;
+  color: var(--board-white);
+  font-size: 0.96rem;
+  line-height: 1.48;
+  overflow-wrap: anywhere;
 }
 
 .messageButton {
   min-height: var(--hit-target);
-  padding: 0.45rem;
+  padding: 0.4rem;
 }
 
 .fakeLink {
   width: 100%;
   min-height: var(--hit-target);
-  margin-top: var(--space-5);
   cursor: pointer;
-  border: 0;
-  border-radius: var(--radius-capsule);
-  background: color-mix(in srgb, var(--mail-blue) 11%, transparent);
-  color: var(--mail-blue);
-  font-weight: 650;
+  border: 1px dashed var(--board-teal);
+  border-radius: 0.7rem;
+  padding: 0.65rem 0.75rem;
+  background: color-mix(in srgb, var(--board-teal) 9%, var(--board-bg));
+  color: var(--board-teal);
+  font-size: 0.92rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .actionDetail {
   display: block;
-  margin-top: var(--space-2);
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
+  margin-top: -0.45rem;
+  color: var(--board-gray);
+  font-size: 0.75rem;
   overflow-wrap: anywhere;
   text-align: center;
 }
 
 .evidenceSelected {
-  outline: 3px solid var(--color-orange);
+  outline: 3px solid var(--board-orange);
   outline-offset: 2px;
-  background: color-mix(in srgb, var(--color-orange) 13%, transparent);
+  background: color-mix(in srgb, var(--board-orange) 15%, var(--board-bg));
 }
 
 .notice {
-  min-height: 2.6rem;
-  margin: var(--space-3) var(--space-2) 0;
-  color: var(--color-secondary-label);
-  font-size: var(--text-subheadline);
+  margin: 0;
+  color: var(--board-gray);
+  font-size: 0.78rem;
   line-height: 1.35;
+}
+
+.notice:empty {
+  display: none;
 }
 
 .clueActions {
   display: grid;
-  gap: var(--space-2);
-}
-
-.actionPanel,
-.decisionPanel,
-.resultPanel {
-  border: 0.5px solid var(--color-separator);
-  border-radius: var(--radius-large);
-  padding: var(--space-4);
-  background: color-mix(
-    in srgb,
-    var(--color-secondary-background) 88%,
-    transparent
-  );
-  box-shadow: var(--shadow-glass);
-}
-
-.actionPanel {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.panelTitle,
-.resultTitle {
-  margin: 0;
-  font-size: var(--text-title-3);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.panelBody,
-.resultExplanation {
-  margin: var(--space-2) 0 0;
-  color: var(--color-secondary-label);
-  font-size: var(--text-subheadline);
-  line-height: 1.4;
-}
-
-.decisionPanel,
-.resultPanel {
-  display: grid;
-  gap: var(--space-3);
-}
-
-.stepLabel {
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.voteButtons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
-}
-
-.resultIcon {
-  display: grid;
-  width: 3.25rem;
-  height: 3.25rem;
-  place-items: center;
-  border-radius: 1rem;
-  background: color-mix(in srgb, var(--color-red) 15%, transparent);
-  color: var(--color-red);
-}
-
-.resultIcon[data-correct="true"] {
-  background: color-mix(in srgb, var(--color-green) 15%, transparent);
-  color: var(--color-green);
-}
-
-.consequenceList {
-  overflow: hidden;
-  margin: var(--space-2) 0;
-  border-radius: var(--radius-medium);
-  background: var(--color-tertiary-background);
-}
-
-.consequenceRow {
-  display: flex;
-  min-height: 3.25rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: 0.7rem var(--space-4);
-}
-
-.consequenceRow + .consequenceRow {
-  border-top: 0.5px solid var(--color-separator);
-}
-
-.consequenceRow strong {
-  color: var(--color-green);
-}
-
-.leaderNote,
-.clueCorrection {
-  margin: 0;
-  color: var(--color-secondary-label);
-  font-size: var(--text-footnote);
-  line-height: 1.4;
-}
-
-.clueCorrection strong {
-  color: var(--color-label);
-  overflow-wrap: anywhere;
-}
-
-@media (min-width: 43.75rem) {
-  .content {
-    height: 874px;
-  }
+  gap: 0.55rem;
 }

@@ -25,6 +25,23 @@
   --game-ink: #0d0f14;
   --game-surface: #171b25;
 
+  /* Board-style UI kit */
+  --board-bg: #04070d;
+  --board-panel: #0c1220;
+  --board-panel-raised: #10192b;
+  --board-green: #8ad05a;
+  --board-orange: #f2a531;
+  --board-red: #f14b4b;
+  --board-teal: #1cd3c0;
+  --board-blue: #3b82f6;
+  --board-white: #f5f7fa;
+  --board-pink: #d95ed4;
+  --board-gray: #95a0b5;
+  --board-line: #202a3e;
+  --board-radius-card: 1.75rem;
+  --board-radius-panel: 1.25rem;
+  --board-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
   /* Typography */
   --font-system:
     -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial,
