@@ -11,48 +11,211 @@ import { publicPath } from "@/lib/public-path";
 
 import styles from "./home-screen.module.css";
 
+type HeroGameCardProps = {
+  difficulty: "hard" | "medium" | "easy";
+  cardId: string;
+  mediaType: "EMAIL" | "LINK" | "SMS";
+  movement: "hard" | "medium" | "easy";
+};
+
+const heroCards: HeroGameCardProps[] = [
+  {
+    difficulty: "hard",
+    cardId: "R03",
+    mediaType: "EMAIL",
+    movement: "hard",
+  },
+  {
+    difficulty: "medium",
+    cardId: "O18",
+    mediaType: "LINK",
+    movement: "medium",
+  },
+  {
+    difficulty: "easy",
+    cardId: "G12",
+    mediaType: "SMS",
+    movement: "easy",
+  },
+];
+
 const howSteps = [
   {
     id: "scan",
     number: "1",
-    title: "Scan the card",
-    description: "Use the QR code on a physical Scan me or LINK card.",
+    title: "Scan",
+    description: "Scan a game card to get the scenario.",
     icon: "/board-style/icons/icon-qr.svg",
   },
   {
     id: "investigate",
     number: "2",
     title: "Investigate",
-    description:
-      "Inspect the message and look for suspicious details. Don't reveal the answer yet.",
+    description: "Read the message and look for suspicious clues.",
     icon: "/board-style/icons/icon-magnifier.svg",
   },
   {
     id: "vote",
     number: "3",
-    title: "Vote on the board",
-    description:
-      "Make your PHISH or LEGIT decision with the physical vote cards, following your game's rules.",
-    icon: "/board-style/icons/icon-check-cross.svg",
+    title: "Vote",
+    description: "Decide: phish or legit?",
+    icon: null,
   },
 ] as const;
 
 type HowStep = (typeof howSteps)[number];
 
-function TrainingNotice() {
+function BrandWordmark({ compact = false }: { compact?: boolean }) {
   return (
-    <footer className={styles.trainingNotice}>
-      <Image
-        alt=""
-        aria-hidden="true"
-        height={24}
-        src={publicPath("/board-style/icons/icon-safe-zone.svg")}
-        width={24}
+    <span
+      className={compact ? styles.cardWordmark : styles.brandWordmark}
+      aria-hidden="true"
+    >
+      <span className={styles.phishWord}>PHISH</span>
+      <span> OR </span>
+      <span className={styles.legitWord}>LEGIT</span>
+      <span> ?</span>
+    </span>
+  );
+}
+
+function HeroGameCard({
+  difficulty,
+  cardId,
+  mediaType,
+  movement,
+}: HeroGameCardProps) {
+  return (
+    <div
+      aria-hidden="true"
+      className={styles.heroCard}
+      data-difficulty={difficulty}
+      data-media={mediaType}
+      data-movement={movement}
+    >
+      <span className={`${styles.cardCorner} ${styles.cardCornerTopLeft}`} />
+      <span className={`${styles.cardCorner} ${styles.cardCornerTopRight}`} />
+      <span className={`${styles.cardCorner} ${styles.cardCornerBottomLeft}`} />
+      <span
+        className={`${styles.cardCorner} ${styles.cardCornerBottomRight}`}
       />
-      <p>
-        <strong>Training simulation only.</strong>
-        <span>Nothing entered here is sent or saved.</span>
-      </p>
+      <div className={styles.cardHeader}>
+        <span>
+          {difficulty.toUpperCase()} · {cardId}
+        </span>
+        {difficulty === "easy" ? <strong>+2</strong> : null}
+      </div>
+      <div className={styles.cardMedia}>
+        {mediaType === "EMAIL" ? (
+          <SystemIcon name="envelope" size={16} />
+        ) : mediaType === "SMS" ? (
+          <SystemIcon name="message" size={16} />
+        ) : (
+          <Image
+            alt=""
+            height={16}
+            src={publicPath("/board-style/icons/icon-link.svg")}
+            width={16}
+          />
+        )}
+        <span>{mediaType}</span>
+      </div>
+      <div className={styles.cardMessage}>
+        <span />
+        <span />
+        <span />
+      </div>
+      <BrandWordmark compact />
+    </div>
+  );
+}
+
+function HeroCardStack() {
+  return (
+    <div className={styles.heroCardStack} aria-hidden="true">
+      {heroCards.map((card) => (
+        <HeroGameCard key={card.cardId} {...card} />
+      ))}
+    </div>
+  );
+}
+
+function TutorialStepCard({
+  step,
+  onOpen,
+}: {
+  step: HowStep;
+  onOpen: (step: HowStep, trigger: HTMLButtonElement) => void;
+}) {
+  return (
+    <button
+      aria-haspopup="dialog"
+      aria-label={`${step.number} ${step.title}`}
+      className={styles.stepCard}
+      data-step={step.id}
+      onClick={(event) => onOpen(step, event.currentTarget)}
+      type="button"
+    >
+      <span className={styles.stepNumber}>{step.number}</span>
+      {step.icon ? (
+        <Image
+          alt=""
+          aria-hidden="true"
+          className={styles.stepIcon}
+          height={30}
+          src={publicPath(step.icon)}
+          width={30}
+        />
+      ) : (
+        <span aria-hidden="true" className={styles.voteIcon}>
+          <SystemIcon name="checkmark" size={20} />
+        </span>
+      )}
+      <span className={styles.stepTitle}>{step.title}</span>
+      <span className={styles.stepDescription}>{step.description}</span>
+    </button>
+  );
+}
+
+function StepArrow() {
+  return (
+    <svg
+      aria-hidden="true"
+      className={styles.stepArrow}
+      fill="none"
+      height="14"
+      viewBox="0 0 16 14"
+      width="16"
+    >
+      <path
+        d="M1 7h12m-5-5 5 5-5 5"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
+function HomeFooter() {
+  return (
+    <footer className={styles.footer}>
+      <div aria-hidden="true" className={styles.footerDivider} />
+      <div className={styles.footerContent}>
+        <Image
+          alt=""
+          aria-hidden="true"
+          height={28}
+          src={publicPath("/board-style/icons/icon-safe-zone.svg")}
+          width={28}
+        />
+        <span aria-hidden="true" className={styles.footerSeparator} />
+        <p>
+          <span>A private, game-based training companion.</span>
+          <span>No personal data collected.</span>
+        </p>
+      </div>
     </footer>
   );
 }
@@ -117,16 +280,16 @@ export function BoardHomeScreen() {
                 className={styles.brand}
                 href={publicPath("/")}
               >
-                <span className={styles.logoTile}>
-                  <Image
-                    alt=""
-                    height={36}
-                    priority
-                    src={publicPath("/brand/phish-or-legit-logo.svg")}
-                    width={36}
-                  />
-                </span>
-                <span>Phish or Legit?</span>
+                <Image
+                  alt=""
+                  className={styles.logo}
+                  height={42}
+                  priority
+                  src={publicPath("/brand/phish-or-legit-logo.svg")}
+                  width={42}
+                />
+                <span aria-hidden="true" className={styles.brandSeparator} />
+                <BrandWordmark />
               </a>
               <button
                 aria-controls="home-shortcuts"
@@ -137,7 +300,7 @@ export function BoardHomeScreen() {
                 ref={menuButtonRef}
                 type="button"
               >
-                <SystemIcon name="ellipsis" size={24} />
+                <SystemIcon name="ellipsis" size={22} />
               </button>
               <nav
                 aria-label="Home shortcuts"
@@ -160,37 +323,39 @@ export function BoardHomeScreen() {
             </header>
 
             <section aria-labelledby="home-title" className={styles.hero}>
-              <div aria-hidden="true" className={styles.heroArt}>
-                <div className={styles.artCardBack}>
-                  <span className={styles.artCornerTop} />
-                  <span className={styles.artCornerBottom} />
-                  <span className={styles.artBackLabel}>CASE FILE</span>
-                </div>
-                <div className={styles.artCard}>
-                  <span className={styles.artCardLabel}>SCAN ME</span>
-                  <Image
-                    alt=""
-                    height={68}
-                    src={publicPath("/board-style/icons/icon-qr.svg")}
-                    width={68}
-                  />
-                  <span className={styles.artCardRule} />
-                  <span className={styles.artCardRuleShort} />
-                  <span className={styles.artCardDifficulty}>EASY · +2</span>
-                </div>
+              <HeroCardStack />
+              <div className={styles.heroTitle}>
+                <span
+                  aria-hidden="true"
+                  className={`${styles.titleCorner} ${styles.titleCornerTopLeft}`}
+                />
+                <span
+                  aria-hidden="true"
+                  className={`${styles.titleCorner} ${styles.titleCornerTopRight}`}
+                />
+                <span
+                  aria-hidden="true"
+                  className={`${styles.titleCorner} ${styles.titleCornerBottomLeft}`}
+                />
+                <span
+                  aria-hidden="true"
+                  className={`${styles.titleCorner} ${styles.titleCornerBottomRight}`}
+                />
+                <h1 className={styles.title} id="home-title">
+                  READY TO PLAY?
+                </h1>
+                <p className={styles.subtitle}>Think before you click.</p>
               </div>
-              <p className={styles.eyebrow}>THE PHYSICAL GAME COMPANION</p>
-              <h1 className={styles.title} id="home-title">
-                THINK BEFORE
-                <br />
-                YOU CLICK.
-              </h1>
-              <p className={styles.description}>
-                Scan a game card, investigate the clues, and decide together.
-              </p>
-              <div className={styles.scanArea} id="scan-a-card">
+            </section>
+
+            <section className={styles.scanSection} id="scan-a-card">
+              <div className={styles.scanArea}>
                 <CardScanner className={styles.scanButton} />
-                <p>A digital companion for the physical game.</p>
+                <p>
+                  Use a <strong>Scan me</strong> or{" "}
+                  <strong className={styles.linkText}>LINK</strong> card from
+                  your game.
+                </p>
               </div>
             </section>
 
@@ -202,33 +367,18 @@ export function BoardHomeScreen() {
               <div className={styles.sectionHeading}>
                 <span className={styles.sectionMarker} aria-hidden="true" />
                 <h2 id="how-to-play-title">HOW TO PLAY</h2>
+                <span aria-hidden="true" className={styles.headingRule} />
               </div>
               <div className={styles.stepsGrid}>
-                {howSteps.map((step) => (
-                  <button
-                    aria-label={step.title}
-                    aria-haspopup="dialog"
-                    className={styles.stepCard}
-                    data-step={step.id}
-                    key={step.id}
-                    onClick={(event) => openTutorial(step, event.currentTarget)}
-                    type="button"
-                  >
-                    <span className={styles.stepNumber}>{step.number}</span>
-                    <Image
-                      alt=""
-                      aria-hidden="true"
-                      height={32}
-                      src={publicPath(step.icon)}
-                      width={32}
-                    />
-                    <span className={styles.stepTitle}>{step.title}</span>
-                  </button>
-                ))}
+                <TutorialStepCard step={howSteps[0]} onOpen={openTutorial} />
+                <StepArrow />
+                <TutorialStepCard step={howSteps[1]} onOpen={openTutorial} />
+                <StepArrow />
+                <TutorialStepCard step={howSteps[2]} onOpen={openTutorial} />
               </div>
             </section>
 
-            <TrainingNotice />
+            <HomeFooter />
           </main>
         </div>
       </DeviceCanvas>
@@ -237,6 +387,16 @@ export function BoardHomeScreen() {
         aria-labelledby="tutorial-title"
         aria-describedby="tutorial-description"
         className={styles.dialog}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeTutorial();
+          }
+        }}
+        onCancel={(event) => {
+          event.preventDefault();
+          closeTutorial();
+        }}
         onClick={(event) => {
           if (event.target === event.currentTarget) closeTutorial();
         }}

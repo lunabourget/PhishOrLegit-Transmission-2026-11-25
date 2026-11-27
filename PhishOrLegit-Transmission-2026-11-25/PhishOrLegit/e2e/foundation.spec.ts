@@ -4,10 +4,10 @@ test("opens the scan-first landing screen", async ({ page }) => {
   await page.goto("/");
 
   await expect(
-    page.getByText("Phish or Legit?", { exact: true }),
+    page.getByRole("link", { name: "Phish or Legit? home", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "THINK BEFORE YOU CLICK." }),
+    page.getByRole("heading", { name: "READY TO PLAY?" }),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Scan a card", exact: true }),
@@ -15,7 +15,18 @@ test("opens the scan-first landing screen", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "HOW TO PLAY" }),
   ).toBeVisible();
-  await expect(page.getByText("Training simulation only.")).toBeVisible();
+  await expect(
+    page.getByText("Use a Scan me or LINK card from your game.", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("A private, game-based training companion."),
+  ).toBeVisible();
+  await expect(page.getByText("THE PHYSICAL GAME COMPANION")).toHaveCount(0);
+  await expect(
+    page.getByText("A digital companion for the physical game."),
+  ).toHaveCount(0);
 });
 
 test("uses matching board-card shells across scan difficulties", async ({
@@ -44,9 +55,10 @@ test("keeps the home and primary scan action within narrow viewports", async ({
     const dimensions = await page.evaluate(() => {
       const content = document.querySelector("[data-testid=home-content]");
       const scanAction = document.getElementById("scan-a-card");
+      const scanButton = scanAction?.querySelector("button");
 
-      if (!content || !scanAction) {
-        throw new Error("The home content or scan action is missing.");
+      if (!content || !scanAction || !scanButton) {
+        throw new Error("The home content or scan button is missing.");
       }
 
       return {
@@ -54,7 +66,7 @@ test("keeps the home and primary scan action within narrow viewports", async ({
         documentWidth: document.documentElement.scrollWidth,
         contentWidth: content.clientWidth,
         contentScrollWidth: content.scrollWidth,
-        scanActionBottom: scanAction.getBoundingClientRect().bottom,
+        scanButtonBottom: scanButton.getBoundingClientRect().bottom,
       };
     });
 
@@ -64,7 +76,7 @@ test("keeps the home and primary scan action within narrow viewports", async ({
     expect(dimensions.contentScrollWidth).toBeLessThanOrEqual(
       dimensions.contentWidth,
     );
-    expect(dimensions.scanActionBottom).toBeLessThanOrEqual(874);
+    expect(dimensions.scanButtonBottom).toBeLessThanOrEqual(437);
   }
 });
 
@@ -87,21 +99,21 @@ test("opens and closes accessible home shortcuts and tutorials", async ({
   await expect(page.getByRole("button", { name: "Open menu" })).toBeFocused();
 
   const scanStep = page.getByRole("button", {
-    name: "Scan the card",
+    name: "1 Scan",
     exact: true,
   });
   await scanStep.click();
-  const scanDialog = page.getByRole("dialog", { name: "Scan the card" });
+  const scanDialog = page.getByRole("dialog", { name: "Scan" });
   await expect(scanDialog).toBeVisible();
   await expect(
-    scanDialog.getByText("Use the QR code on a physical Scan me or LINK card."),
+    scanDialog.getByText("Scan a game card to get the scenario."),
   ).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(scanDialog).toBeHidden();
   await expect(scanStep).toBeFocused();
 
   const investigateStep = page.getByRole("button", {
-    name: "Investigate",
+    name: "2 Investigate",
     exact: true,
   });
   await investigateStep.click();
@@ -111,21 +123,17 @@ test("opens and closes accessible home shortcuts and tutorials", async ({
   await expect(investigateDialog).toBeVisible();
   await expect(
     investigateDialog.getByText(
-      "Inspect the message and look for suspicious details. Don't reveal the answer yet.",
+      "Read the message and look for suspicious clues.",
     ),
   ).toBeVisible();
   await investigateDialog.getByRole("button", { name: "Close" }).click();
   await expect(investigateDialog).toBeHidden();
   await expect(investigateStep).toBeFocused();
 
-  await page.getByRole("button", { name: "Vote on the board" }).click();
-  const voteDialog = page.getByRole("dialog", { name: "Vote on the board" });
+  await page.getByRole("button", { name: "3 Vote" }).click();
+  const voteDialog = page.getByRole("dialog", { name: "Vote" });
   await expect(voteDialog).toBeVisible();
-  await expect(
-    voteDialog.getByText(
-      "Make your PHISH or LEGIT decision with the physical vote cards, following your game's rules.",
-    ),
-  ).toBeVisible();
+  await expect(voteDialog.getByText("Decide: phish or legit?")).toBeVisible();
   await voteDialog.getByRole("button", { name: "Close" }).click();
 });
 
